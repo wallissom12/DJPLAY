@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 240px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            background-color: var(--bs-dark);
+        }
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: .5rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: var(--bs-gray-400);
+        }
+        .nav-link:hover {
+            color: var(--bs-white);
+        }
+        .nav-link.active {
+            color: var(--bs-info);
+        }
+        .nav-link .bi {
+            margin-right: 4px;
+            color: var(--bs-gray-600);
+        }
+        .nav-link:hover .bi, .nav-link.active .bi {
+            color: inherit;
+        }
+        .navbar-brand {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            font-size: 1rem;
+            background-color: var(--bs-dark);
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+        }
+        .content {
+            margin-left: 240px;
+            padding: 48px 1.5rem 0;
+            flex: 1;
+        }
+        .settings-card {
+            border-radius: 0.5rem;
+            border: 1px solid var(--bs-border-color);
+            margin-bottom: 1.5rem;
+        }
+        .settings-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--bs-border-color);
+            background-color: var(--bs-dark-bg-subtle);
+            font-weight: 500;
+        }
+        .settings-body {
+            padding: 1.5rem;
+        }
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=DJPay" alt="Bot Logo" width="24" height="24" class="d-inline-block align-top me-2">
+            DJPay Admin
+        </a>
+        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">
+                                <i class="bi bi-house-door"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/leaderboard">
+                                <i class="bi bi-trophy"></i>
+                                Placares
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/shop">
+                                <i class="bi bi-shop"></i>
+                                Lojinha
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/shop/purchases">
+                                <i class="bi bi-bag-check"></i>
+                                Compras
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/admin/settings">
+                                <i class="bi bi-gear"></i>
+                                Configurações
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">
+                                <i class="bi bi-box-arrow-right"></i>
+                                Sair
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Configurações do Sistema</h1>
+                </div>
+                
+                <form method="post" action="{{ url_for('admin_settings') }}">
+                    <!-- Configurações de Pontuação -->
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="bi bi-star me-2"></i> Configurações de Pontuação
+                        </div>
+                        <div class="settings-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="points_per_correct_answer" class="form-label">Pontos por Resposta Correta</label>
+                                    <input type="number" class="form-control" id="points_per_correct_answer" name="points_per_correct_answer" min="1" value="{{ settings.points_per_correct_answer }}">
+                                    <div class="form-text">Pontos base para cada resposta correta em jogos.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="points_per_second" class="form-label">Pontos Deduzidos por Segundo</label>
+                                    <input type="number" class="form-control" id="points_per_second" name="points_per_second" min="0" step="0.1" value="{{ settings.points_per_second }}">
+                                    <div class="form-text">Quantidade de pontos deduzidos por segundo de resposta.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Configurações de Jogos -->
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="bi bi-controller me-2"></i> Configurações de Jogos
+                        </div>
+                        <div class="settings-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="game_frequency_minutes" class="form-label">Frequência de Jogos (minutos)</label>
+                                    <input type="number" class="form-control" id="game_frequency_minutes" name="game_frequency_minutes" min="1" value="{{ settings.game_frequency_minutes }}">
+                                    <div class="form-text">Intervalo entre jogos automáticos em minutos.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="notification_time_minutes" class="form-label">Notificação Prévia (minutos)</label>
+                                    <input type="number" class="form-control" id="notification_time_minutes" name="notification_time_minutes" min="0" value="{{ settings.notification_time_minutes }}">
+                                    <div class="form-text">Minutos antes do jogo para enviar notificação.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="max_game_duration_seconds" class="form-label">Duração Máxima do Jogo (segundos)</label>
+                                    <input type="number" class="form-control" id="max_game_duration_seconds" name="max_game_duration_seconds" min="10" value="{{ settings.max_game_duration_seconds }}">
+                                    <div class="form-text">Duração máxima de cada rodada de jogo.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="retry_timeout_seconds" class="form-label">Tempo para Nova Tentativa (segundos)</label>
+                                    <input type="number" class="form-control" id="retry_timeout_seconds" name="retry_timeout_seconds" min="1" value="{{ settings.retry_timeout_seconds }}">
+                                    <div class="form-text">Tempo que um usuário deve esperar após errar para tentar novamente.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Configurações de Convites -->
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="bi bi-person-plus me-2"></i> Configurações de Convites
+                        </div>
+                        <div class="settings-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="invitation_enabled" class="form-label">Pontuação por Convites</label>
+                                    <select class="form-select" id="invitation_enabled" name="invitation_enabled">
+                                        <option value="true" {% if settings.invitation_enabled == 'true' %}selected{% endif %}>Ativada</option>
+                                        <option value="false" {% if settings.invitation_enabled == 'false' %}selected{% endif %}>Desativada</option>
+                                    </select>
+                                    <div class="form-text">Ativar ou desativar pontos por convites.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="invitation_points" class="form-label">Pontos por Convite</label>
+                                    <input type="number" class="form-control" id="invitation_points" name="invitation_points" min="0" value="{{ settings.invitation_points }}">
+                                    <div class="form-text">Quantidade de pontos recebidos por cada convite aceito.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Configurações da Lojinha -->
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="bi bi-shop me-2"></i> Configurações da Lojinha
+                        </div>
+                        <div class="settings-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="shop_enabled" class="form-label">Status da Lojinha</label>
+                                    <select class="form-select" id="shop_enabled" name="shop_enabled">
+                                        <option value="true" {% if settings.shop_enabled == 'true' %}selected{% endif %}>Ativada</option>
+                                        <option value="false" {% if settings.shop_enabled == 'false' %}selected{% endif %}>Desativada</option>
+                                    </select>
+                                    <div class="form-text">Ativar ou desativar a lojinha de troca de pontos.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 mb-5">
+                        <button type="reset" class="btn btn-secondary me-md-2">Restaurar Padrões</button>
+                        <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

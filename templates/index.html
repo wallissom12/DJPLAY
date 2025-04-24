@@ -3,163 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot de Jogos do Telegram</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
     <style>
-        .emoji-large {
-            font-size: 2rem;
+        .hero-section {
+            padding: 4rem 0;
+            background-color: var(--bs-dark);
+            border-bottom: 1px solid var(--bs-border-color);
         }
         .feature-card {
-            transition: transform 0.3s ease;
+            border: 1px solid var(--bs-border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .feature-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--bs-info);
+        }
+        .leaderboard-section {
+            padding: 3rem 0;
+            background-color: var(--bs-dark-bg-subtle);
+        }
+        .leaderboard-card {
+            border: 1px solid var(--bs-border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 100%;
+        }
+        .leaderboard-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--bs-border-color);
+        }
+        .leaderboard-item:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            padding: 2rem 0;
+            background-color: var(--bs-dark);
+            border-top: 1px solid var(--bs-border-color);
         }
     </style>
 </head>
 <body>
-    <div class="container py-5">
-        <header class="text-center mb-5">
-            <h1 class="display-4">🎮 Bot de Jogos do Telegram 🎮</h1>
-            <p class="lead">Jogos interativos, rankings e prêmios para grupos do Telegram</p>
-        </header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=DJPay" alt="Bot Logo" width="30" height="30" class="d-inline-block align-top me-2">
+                DJPay Bot
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Recursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#leaderboard">Placar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <section class="mb-5">
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-4">Bot de Jogos do Telegram</h1>
+            <p class="lead mb-5">Divirta-se com quizzes, adivinhe filmes através de emojis e ganhe prêmios reais com o sistema de pontos DJPay!</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="https://t.me/seu_bot" class="btn btn-primary btn-lg">Adicionar ao Telegram</a>
+                <a href="#features" class="btn btn-outline-secondary btn-lg">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5" id="features">
+        <div class="container">
+            <h2 class="text-center mb-5">Recursos Incríveis</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">🎬</div>
+                        <h3>Adivinhe o Filme</h3>
+                        <p>Tente adivinhar o filme a partir de uma sequência de emojis. Quanto mais rápido você responder, mais pontos ganha!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Quiz de Conhecimento</h3>
+                        <p>Responda a perguntas de diversos temas e desafie seus amigos para ver quem sabe mais.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">🎭</div>
+                        <h3>Padrões de Emoji</h3>
+                        <p>Identifique o padrão na sequência de emojis e seja o primeiro a responder para ganhar pontos!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Placar</h3>
+                        <p>Acompanhe sua pontuação e compare com seus amigos no ranking global.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">🔗</div>
+                        <h3>Links de Convite</h3>
+                        <p>Convide amigos para jogar e ganhe pontos bônus para cada convite aceito!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">💰</div>
+                        <h3>Lojinha DJPay</h3>
+                        <p>Troque seus pontos por prêmios reais na lojinha exclusiva.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section class="leaderboard-section" id="leaderboard">
+        <div class="container">
+            <h2 class="text-center mb-5">Placar de Líderes</h2>
+            
             <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card bg-dark">
-                        <div class="card-body text-center">
-                            <h2>Status do Bot</h2>
-                            <p id="status-message" class="mb-0">
-                                <span class="badge bg-success">Online</span> 
-                                Bot está funcionando normalmente
-                            </p>
-                        </div>
+                <!-- Top Users -->
+                <div class="col-md-6 mb-4">
+                    <div class="leaderboard-card">
+                        <h3 class="text-center mb-4">🏆 Pontuação</h3>
+                        {% if top_users %}
+                            {% for user in top_users %}
+                                <div class="leaderboard-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold">{{ loop.index }}.</span>
+                                        <span>{{ user.username or user.first_name }}</span>
+                                    </div>
+                                    <span class="badge bg-primary">{{ user.points }} pts</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-center">Ainda não há jogadores no ranking.</p>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                
+                <!-- Top Inviters -->
+                <div class="col-md-6 mb-4">
+                    <div class="leaderboard-card">
+                        <h3 class="text-center mb-4">🔗 Convites</h3>
+                        {% if top_inviters %}
+                            {% for user in top_inviters %}
+                                <div class="leaderboard-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold">{{ loop.index }}.</span>
+                                        <span>{{ user.username or user.first_name }}</span>
+                                    </div>
+                                    <span class="badge bg-info">{{ user.invite_count }} convites</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-center">Ainda não há convites registrados.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        </section>
+            
+        </div>
+    </section>
 
-        <section class="mb-5">
-            <h2 class="text-center mb-4">Funcionalidades</h2>
+    <!-- How to Play Section -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center mb-5">Como Jogar</h2>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card h-100 feature-card">
+                    <div class="card h-100 bg-dark-subtle">
                         <div class="card-body text-center">
-                            <div class="emoji-large mb-3">🎬</div>
-                            <h3>Adivinhe o Filme</h3>
-                            <p>Descubra qual filme está representado pelos emojis e escolha a resposta correta.</p>
-                            <code>/filme</code>
+                            <h5 class="card-title">1. Adicione o Bot</h5>
+                            <p class="card-text">Adicione o bot ao seu grupo do Telegram ou inicie uma conversa direta.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 feature-card">
+                    <div class="card h-100 bg-dark-subtle">
                         <div class="card-body text-center">
-                            <div class="emoji-large mb-3">🧠</div>
-                            <h3>Quiz de Conhecimentos</h3>
-                            <p>Teste seus conhecimentos em diversos temas com perguntas de múltipla escolha.</p>
-                            <code>/quiz</code>
+                            <h5 class="card-title">2. Jogue e Ganhe Pontos</h5>
+                            <p class="card-text">Participe dos jogos e desafios para acumular pontos.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 feature-card">
+                    <div class="card h-100 bg-dark-subtle">
                         <div class="card-body text-center">
-                            <div class="emoji-large mb-3">🔍</div>
-                            <h3>Sequência de Emoji</h3>
-                            <p>Descubra o padrão e complete a sequência de emojis para ganhar pontos.</p>
-                            <code>/emoji</code>
+                            <h5 class="card-title">3. Troque por Prêmios</h5>
+                            <p class="card-text">Use seus pontos para resgatar prêmios reais na lojinha DJPay.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="mb-5">
-            <h2 class="text-center mb-4">Outros Comandos</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="card h-100 feature-card">
-                        <div class="card-body text-center">
-                            <div class="emoji-large mb-3">🏆</div>
-                            <h3>Placar</h3>
-                            <p>Veja o ranking dos melhores jogadores.</p>
-                            <code>/placar</code>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card h-100 feature-card">
-                        <div class="card-body text-center">
-                            <div class="emoji-large mb-3">🔗</div>
-                            <h3>Convites</h3>
-                            <p>Gere links de convite para seus amigos.</p>
-                            <code>/convite</code>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card h-100 feature-card">
-                        <div class="card-body text-center">
-                            <div class="emoji-large mb-3">💰</div>
-                            <h3>Prêmios</h3>
-                            <p>Resgate seus prêmios por pontos acumulados.</p>
-                            <code>/premio</code>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card h-100 feature-card">
-                        <div class="card-body text-center">
-                            <div class="emoji-large mb-3">⚙️</div>
-                            <h3>Configurar</h3>
-                            <p>Configurações avançadas para administradores.</p>
-                            <code>/configurar</code>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <p>© 2025 DJPay Bot | Todos os direitos reservados</p>
+        </div>
+    </footer>
 
-        <footer class="text-center mt-5">
-            <p class="text-muted">© 2025 Bot de Jogos do Telegram. Desenvolvido com ❤️</p>
-        </footer>
-    </div>
-
-    <script>
-        // Função para verificar o status do bot
-        async function checkBotStatus() {
-            try {
-                const response = await fetch('/api/status');
-                const data = await response.json();
-                
-                const statusElement = document.getElementById('status-message');
-                
-                if (data.status === 'online') {
-                    statusElement.innerHTML = `
-                        <span class="badge bg-success">Online</span> 
-                        ${data.message}
-                    `;
-                } else {
-                    statusElement.innerHTML = `
-                        <span class="badge bg-danger">Offline</span> 
-                        Problemas na conexão com o bot
-                    `;
-                }
-            } catch (error) {
-                document.getElementById('status-message').innerHTML = `
-                    <span class="badge bg-warning">Verificando</span> 
-                    Não foi possível verificar o status do bot
-                `;
-            }
-        }
-        
-        // Verificar o status do bot quando a página carregar
-        document.addEventListener('DOMContentLoaded', checkBotStatus);
-        
-        // Verificar o status do bot a cada 60 segundos
-        setInterval(checkBotStatus, 60000);
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
