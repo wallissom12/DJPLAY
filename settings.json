@@ -1,0 +1,9 @@
+{
+    "points_per_correct_answer": 10,
+    "points_per_second": 1,
+    "game_frequency_minutes": 60,
+    "notification_minutes_before": 5,
+    "admin_ids": [],
+    "prize_amount": "10,00",
+    "prize_frequency": "weekly"
+}

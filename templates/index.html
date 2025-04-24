@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot de Jogos do Telegram</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <style>
+        .emoji-large {
+            font-size: 2rem;
+        }
+        .feature-card {
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <header class="text-center mb-5">
+            <h1 class="display-4">🎮 Bot de Jogos do Telegram 🎮</h1>
+            <p class="lead">Jogos interativos, rankings e prêmios para grupos do Telegram</p>
+        </header>
+
+        <section class="mb-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card bg-dark">
+                        <div class="card-body text-center">
+                            <h2>Status do Bot</h2>
+                            <p id="status-message" class="mb-0">
+                                <span class="badge bg-success">Online</span> 
+                                Bot está funcionando normalmente
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-center mb-4">Funcionalidades</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="emoji-large mb-3">🎬</div>
+                            <h3>Adivinhe o Filme</h3>
+                            <p>Descubra qual filme está representado pelos emojis e escolha a resposta correta.</p>
+                            <code>/filme</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="emoji-large mb-3">🧠</div>
+                            <h3>Quiz de Conhecimentos</h3>
+                            <p>Teste seus conhecimentos em diversos temas com perguntas de múltipla escolha.</p>
+                            <code>/quiz</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="emoji-large mb-3">🔍</div>
+                            <h3>Sequência de Emoji</h3>
+                            <p>Descubra o padrão e complete a sequência de emojis para ganhar pontos.</p>
+                            <code>/emoji</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-center mb-4">Outros Comandos</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="emoji-large mb-3">🏆</div>
+                            <h3>Placar</h3>
+                            <p>Veja o ranking dos melhores jogadores.</p>
+                            <code>/placar</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="emoji-large mb-3">🔗</div>
+                            <h3>Convites</h3>
+                            <p>Gere links de convite para seus amigos.</p>
+                            <code>/convite</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="emoji-large mb-3">💰</div>
+                            <h3>Prêmios</h3>
+                            <p>Resgate seus prêmios por pontos acumulados.</p>
+                            <code>/premio</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="emoji-large mb-3">⚙️</div>
+                            <h3>Configurar</h3>
+                            <p>Configurações avançadas para administradores.</p>
+                            <code>/configurar</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-5">
+            <p class="text-muted">© 2025 Bot de Jogos do Telegram. Desenvolvido com ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        // Função para verificar o status do bot
+        async function checkBotStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                
+                const statusElement = document.getElementById('status-message');
+                
+                if (data.status === 'online') {
+                    statusElement.innerHTML = `
+                        <span class="badge bg-success">Online</span> 
+                        ${data.message}
+                    `;
+                } else {
+                    statusElement.innerHTML = `
+                        <span class="badge bg-danger">Offline</span> 
+                        Problemas na conexão com o bot
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('status-message').innerHTML = `
+                    <span class="badge bg-warning">Verificando</span> 
+                    Não foi possível verificar o status do bot
+                `;
+            }
+        }
+        
+        // Verificar o status do bot quando a página carregar
+        document.addEventListener('DOMContentLoaded', checkBotStatus);
+        
+        // Verificar o status do bot a cada 60 segundos
+        setInterval(checkBotStatus, 60000);
+    </script>
+</body>
+</html>
