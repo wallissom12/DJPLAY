@@ -1,0 +1,91 @@
+🔧 Funcionalidades Essenciais
+🎬 Adivinhe o Filme
+
+O bot envia uma combinação de emojis que representa um filme.
+
+Mensagem interativa com botões (InlineKeyboardButtons) listando possíveis nomes de filmes.
+
+Resposta correta gera pontos; feedback imediato (certo/errado).
+
+🧠 Quiz de Perguntas
+
+Perguntas de múltipla escolha sobre temas como matemática, cultura geral, etc.
+
+Cronômetro interno para calcular tempo de resposta.
+
+Pontuação proporcional à rapidez e correção da resposta.
+
+Exemplo de comando: /quiz
+
+🐱 Sequência de Emoji
+
+O bot envia uma imagem ou mensagem com sequência lógica de emojis.
+
+Membros devem responder com a próxima sequência ou identificar o padrão.
+
+Primeiro a responder corretamente ganha pontos.
+
+Suporte a verificação de tempo e ordem de respostas.
+
+🔗 Geração de Links de Convite
+
+Usuários podem gerar links únicos com /convite.
+
+Bot rastreia quem entrou via qual link e contabiliza “convites bem-sucedidos”.
+
+Sistema de recompensa para quem mais convida.
+
+⚙️ Comandos de Administração
+
+/configurar permite definir:
+
+Pontos por segundo de resposta.
+
+Frequência dos jogos (ex: a cada 30 minutos, 1 hora).
+
+Apenas administradores podem usar.
+
+🏆 Placar e Prêmios
+
+/placar exibe ranking dos participantes por pontuação.
+
+/premio envia instruções ao ganhador:
+
+Solicita ID Telegram e QR Code para envio do Pix.
+
+Pode ser configurado para premiar semanalmente, etc.
+
+⏳ Contagem Regressiva & Notificações
+
+Bot envia aviso de “Brincadeira começando em 5 minutos!”.
+
+Usa JobQueue (em Python) ou setInterval (Node.js) para agendamento.
+
+Notificações automáticas no início e fim das rodadas.
+
+💻 Tecnologias Sugeridas
+Linguagem:
+
+Python 3 (com python-telegram-bot >= 20.x)
+
+ou Node.js (com node-telegram-bot-api)
+
+Banco de Dados:
+
+SQLite (simples e local)
+
+ou MongoDB (para escalar e manter dados persistentes, como pontuação, convites e respostas)
+
+Deploy:
+
+Pode ser hospedado em Heroku, Render, Railway ou VPS.
+
+🧩 Extras e Ideias Futuras
+Integração com API de filmes (TMDb) para gerar automaticamente os quizzes de “Adivinhe o Filme”.
+
+Sistema de níveis e conquistas (gamificação).
+
+Ranking semanal/mensal.
+
+Moderação automática contra spam durante jogos.
+
