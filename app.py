@@ -160,8 +160,22 @@ def admin_shop_item_new():
     """Página para adicionar novo item à lojinha."""
     if request.method == 'POST':
         name = request.form.get('name')
-        description = request.form.get('description')
+        description = request.form.get('description', '')
         points_cost = int(request.form.get('points_cost', 0))
+        item_type = request.form.get('item_type')
+        real_value = request.form.get('real_value')
+        
+        # Adiciona informações do tipo e valor real ao description
+        if item_type == 'pix':
+            if not description:
+                description = f"Transferência PIX no valor de R${real_value}."
+            else:
+                description = f"PIX: R${real_value}. {description}"
+        elif item_type == 'banca':
+            if not description:
+                description = f"Produto Banca no valor de R${real_value}."
+            else:
+                description = f"Banca: R${real_value}. {description}"
         
         if name and points_cost > 0:
             item_id = create_shop_item(name, description, points_cost)
@@ -182,11 +196,55 @@ def admin_shop_item_edit(item_id):
         flash('Item não encontrado.', 'danger')
         return redirect(url_for('admin_shop'))
     
+    # Extrair informações do tipo e valor real da descrição para o formulário
+    if 'PIX' in item['description']:
+        item['item_type'] = 'pix'
+        try:
+            # Tentar extrair o valor do PIX da descrição
+            import re
+            matches = re.search(r'R\$(\d+(?:\.\d+)?)', item['description'])
+            if matches:
+                item['real_value'] = matches.group(1)
+        except:
+            item['real_value'] = ''
+    elif 'Banca' in item['description']:
+        item['item_type'] = 'banca'
+        try:
+            # Tentar extrair o valor da Banca da descrição
+            import re
+            matches = re.search(r'R\$(\d+(?:\.\d+)?)', item['description'])
+            if matches:
+                item['real_value'] = matches.group(1)
+        except:
+            item['real_value'] = ''
+    
     if request.method == 'POST':
         name = request.form.get('name')
-        description = request.form.get('description')
+        description = request.form.get('description', '')
         points_cost = int(request.form.get('points_cost', 0))
         is_active = bool(request.form.get('is_active'))
+        item_type = request.form.get('item_type')
+        real_value = request.form.get('real_value')
+        
+        # Atualiza informações do tipo e valor real na descrição
+        if item_type == 'pix':
+            if not description:
+                description = f"Transferência PIX no valor de R${real_value}."
+            else:
+                # Substituir qualquer menção anterior do valor
+                if 'PIX' in description:
+                    description = re.sub(r'PIX: R\$\d+(?:\.\d+)?\.', f"PIX: R${real_value}.", description)
+                else:
+                    description = f"PIX: R${real_value}. {description}"
+        elif item_type == 'banca':
+            if not description:
+                description = f"Produto Banca no valor de R${real_value}."
+            else:
+                # Substituir qualquer menção anterior do valor
+                if 'Banca' in description:
+                    description = re.sub(r'Banca: R\$\d+(?:\.\d+)?\.', f"Banca: R${real_value}.", description)
+                else:
+                    description = f"Banca: R${real_value}. {description}"
         
         if name and points_cost > 0:
             update_shop_item(item_id, name, description, points_cost, is_active)

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 240px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            background-color: var(--bs-dark);
+        }
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: .5rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: var(--bs-gray-400);
+        }
+        .nav-link:hover {
+            color: var(--bs-white);
+        }
+        .nav-link.active {
+            color: var(--bs-info);
+        }
+        .nav-link .bi {
+            margin-right: 4px;
+            color: var(--bs-gray-600);
+        }
+        .nav-link:hover .bi, .nav-link.active .bi {
+            color: inherit;
+        }
+        .navbar-brand {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            font-size: 1rem;
+            background-color: var(--bs-dark);
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+        }
+        .content {
+            margin-left: 240px;
+            padding: 48px 1.5rem 0;
+            flex: 1;
+        }
+        .form-card {
+            border-radius: 0.5rem;
+            border: 1px solid var(--bs-border-color);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=DJPay" alt="Bot Logo" width="24" height="24" class="d-inline-block align-top me-2">
+            DJPay Admin
+        </a>
+        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">
+                                <i class="bi bi-house-door"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/leaderboard">
+                                <i class="bi bi-trophy"></i>
+                                Placares
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/admin/shop">
+                                <i class="bi bi-shop"></i>
+                                Lojinha
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/shop/purchases">
+                                <i class="bi bi-bag-check"></i>
+                                Compras
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/settings">
+                                <i class="bi bi-gear"></i>
+                                Configurações
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">
+                                <i class="bi bi-box-arrow-right"></i>
+                                Sair
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">{{ title }}</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <a href="{{ url_for('admin_shop') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Voltar à Lojinha
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="form-card p-4">
+                            <form method="post" action="">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nome do Item*</label>
+                                    <input type="text" class="form-control" id="name" name="name" required 
+                                           value="{{ item.name if item else '' }}">
+                                    <div class="form-text">Nome do produto ou serviço oferecido.</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="item_type" class="form-label">Tipo de Item*</label>
+                                    <select class="form-select" id="item_type" name="item_type" required>
+                                        <option value="">Selecione o tipo...</option>
+                                        <option value="pix" {% if item and 'PIX' in item.description %}selected{% endif %}>PIX (Transferência de Dinheiro)</option>
+                                        <option value="banca" {% if item and 'Banca' in item.description %}selected{% endif %}>Banca (Produto Físico)</option>
+                                    </select>
+                                    <div class="form-text">Selecione o tipo de produto ou serviço.</div>
+                                </div>
+                                
+                                <div class="mb-3" id="valueContainer">
+                                    <label for="real_value" class="form-label">Valor em R$*</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">R$</span>
+                                        <input type="number" class="form-control" id="real_value" name="real_value" min="0" step="0.01" required 
+                                               value="{{ item.real_value if item and item.real_value else '' }}">
+                                    </div>
+                                    <div class="form-text">Valor monetário real do item ou serviço.</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Descrição</label>
+                                    <textarea class="form-control" id="description" name="description" rows="4">{{ item.description if item else '' }}</textarea>
+                                    <div class="form-text">Detalhes adicionais sobre o item ou serviço.</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="points_cost" class="form-label">Custo em Pontos DJPay*</label>
+                                    <input type="number" class="form-control" id="points_cost" name="points_cost" min="1" required 
+                                           value="{{ item.points_cost if item else '' }}">
+                                    <div class="form-text">Quantidade de pontos necessários para adquirir este item.</div>
+                                </div>
+                                
+                                {% if item %}
+                                <div class="mb-3 form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" 
+                                           {% if item.is_active %}checked{% endif %}>
+                                    <label class="form-check-label" for="is_active">Item Ativo</label>
+                                    <div class="form-text">Desmarque para ocultar o item da lojinha.</div>
+                                </div>
+                                {% endif %}
+                                
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                    <button type="reset" class="btn btn-outline-secondary me-md-2">Limpar</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        {% if item %}Atualizar Item{% else %}Criar Item{% endif %}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Script para atualizar a descrição automaticamente baseado no tipo selecionado
+        const itemTypeSelect = document.getElementById('item_type');
+        const descriptionField = document.getElementById('description');
+        const realValueField = document.getElementById('real_value');
+        const pointsCostField = document.getElementById('points_cost');
+        
+        itemTypeSelect.addEventListener('change', function() {
+            const type = this.value;
+            
+            if (type === 'pix') {
+                // Para PIX, sugerir descrição
+                if (!descriptionField.value) {
+                    descriptionField.value = 'Transferência PIX no valor especificado.';
+                }
+                
+                // Sugerir uma equivalência entre real e pontos (1 real = 10 pontos)
+                realValueField.addEventListener('input', function() {
+                    const realValue = parseFloat(this.value) || 0;
+                    pointsCostField.value = Math.ceil(realValue * 10);
+                });
+            } 
+            else if (type === 'banca') {
+                // Para Banca, sugerir descrição
+                if (!descriptionField.value) {
+                    descriptionField.value = 'Produto físico da Banca. Entre em contato após a compra para definir entrega.';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
