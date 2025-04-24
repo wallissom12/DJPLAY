@@ -1,0 +1,1448 @@
+{
+  "popular_page_1": {
+    "page": 1,
+    "results": [
+      {
+        "adult": false,
+        "backdrop_path": "/fTrQsdMS2MUw00RnzH0r3JWHhts.jpg",
+        "genre_ids": [
+          28,
+          80,
+          53
+        ],
+        "id": 1197306,
+        "original_language": "en",
+        "original_title": "A Working Man",
+        "overview": "Ele quer viver uma vida simples e ser um bom pai para sua filha. Mas quando a filha adolescente de seu chefe, Jenny, desaparece, ele é chamado para reempregar as habilidades que o tornaram uma figura lendária nas operações secretas.",
+        "popularity": 1086.1895,
+        "poster_path": "/iT6yYCAuMQwm1PV4nByrsrsIOhG.jpg",
+        "release_date": "2025-03-26",
+        "title": "Resgate Implacável",
+        "video": false,
+        "vote_average": 6.331,
+        "vote_count": 406
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/op3qmNhvwEvyT7UFyPbIfQmKriB.jpg",
+        "genre_ids": [
+          14,
+          12,
+          28
+        ],
+        "id": 324544,
+        "original_language": "en",
+        "original_title": "In the Lost Lands",
+        "overview": "Uma rainha, desesperada para ganhar o dom da mudança de forma, toma uma atitude ousada: contrata a feiticeira Gray Alys, uma mulher tão temida quanto poderosa. Enviada para a selva fantasmagórica das Terras Perdidas, Alys e seu guia, o andarilho Boyce, devem enganar e lutar contra o homem e o diabo em uma fábula que explora a natureza do bem e do mal, da dívida e da satisfação, do amor e da perda.",
+        "popularity": 481.112,
+        "poster_path": "/hSljn1jfCClIbHNdlz6cWQEjncV.jpg",
+        "release_date": "2025-02-27",
+        "title": "Nas Terras Perdidas",
+        "video": false,
+        "vote_average": 6.316,
+        "vote_count": 264
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/2Nti3gYAX513wvhp8IiLL6ZDyOm.jpg",
+        "genre_ids": [
+          10751,
+          35,
+          12,
+          14
+        ],
+        "id": 950387,
+        "original_language": "en",
+        "original_title": "A Minecraft Movie",
+        "overview": "Quatro desajustados enfrentam problemas comuns do dia a dia quando, de repente, são sugados por um portal misterioso para o Overworld: uma terra fascinante e cúbica, movida pela imaginação. Para voltarem para casa, eles precisarão dominar esse novo mundo enquanto embarcam em uma jornada mágica ao lado de um crafter experiente e inesperado: Steve.",
+        "popularity": 543.1977,
+        "poster_path": "/4VtkIaj76TpQNfhDHXQDdT9uBN5.jpg",
+        "release_date": "2025-03-31",
+        "title": "Um Filme Minecraft",
+        "video": false,
+        "vote_average": 6.2,
+        "vote_count": 702
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/jhL4eTpccoZSVehhcR8DKLSBHZy.jpg",
+        "genre_ids": [
+          28,
+          53,
+          878
+        ],
+        "id": 822119,
+        "original_language": "en",
+        "original_title": "Captain America: Brave New World",
+        "overview": "Após se encontrar com o recém-eleito presidente dos EUA, Thaddeus Ross, Sam se vê no meio de um incidente internacional. Ele deve descobrir o motivo por trás de uma conspiração global nefasta antes que o verdadeiro gênio faça o mundo inteiro ser dominado pelo vermelho.",
+        "popularity": 376.8807,
+        "poster_path": "/5nbSgP8f5LMCI0PwVRRaHJaUmR3.jpg",
+        "release_date": "2025-02-12",
+        "title": "Capitão América: Admirável Mundo Novo",
+        "video": false,
+        "vote_average": 6.143,
+        "vote_count": 1594
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/k32XKMjmXMGeydykD32jfER3BVI.jpg",
+        "genre_ids": [
+          28,
+          9648,
+          18
+        ],
+        "id": 1045938,
+        "original_language": "en",
+        "original_title": "G20",
+        "overview": "Quando a Cúpula do G20 é atacada, a presidente dos EUA Danielle Sutton torna-se o principal alvo. Nesta aventura repleta de ação e suspense, após conseguir evitar ser capturada pelos invasores, a presidente precisa ser mais esperta do que o inimigo para proteger sua família, defender seu país e salvaguardar os líderes mundiais.",
+        "popularity": 337.4409,
+        "poster_path": "/wv6oWAleCJZUk5htrGg413t3GCy.jpg",
+        "release_date": "2025-04-09",
+        "title": "G20",
+        "video": false,
+        "vote_average": 6.688,
+        "vote_count": 352
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/sNx1A3822kEbqeUxvo5A08o4N7o.jpg",
+        "genre_ids": [
+          28,
+          35,
+          53
+        ],
+        "id": 1195506,
+        "original_language": "en",
+        "original_title": "Novocaine",
+        "overview": "Quando a garota de seus sonhos é sequestrada, Nathan, um homem comum, transforma sua condição de não sentir dor em sua maior força para recuperar a amada das garras dos criminosos.",
+        "popularity": 307.4463,
+        "poster_path": "/knIEw2jWOxrb6ugNPEoaiYI6p77.jpg",
+        "release_date": "2025-03-12",
+        "title": "Novocaine: À Prova de Dor",
+        "video": false,
+        "vote_average": 6.9,
+        "vote_count": 570
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/zksO4lVnRKRoaSYzh2EDn2Z3Pel.jpg",
+        "genre_ids": [
+          37,
+          28
+        ],
+        "id": 1293286,
+        "original_language": "en",
+        "original_title": "Gunslingers",
+        "overview": "",
+        "popularity": 292.2274,
+        "poster_path": "/O7REXWPANWXvX2jhQydHjAq2DV.jpg",
+        "release_date": "2025-04-11",
+        "title": "Gunslingers",
+        "video": false,
+        "vote_average": 6.618,
+        "vote_count": 34
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/nAxGnGHOsfzufThz20zgmRwKur3.jpg",
+        "genre_ids": [
+          27,
+          28,
+          53
+        ],
+        "id": 1233413,
+        "original_language": "en",
+        "original_title": "Sinners",
+        "overview": "Dispostos a deixar suas vidas conturbadas para trás, irmãos gêmeos retornam à sua cidade natal para recomeçar suas vidas do zero, quando descobrem que um mal ainda maior está à espera deles para recebê-los de volta.",
+        "popularity": 266.5366,
+        "poster_path": "/a9kYEboW1TQaeilGYUAx1MO0DUp.jpg",
+        "release_date": "2025-04-16",
+        "title": "Pecadores",
+        "video": false,
+        "vote_average": 7.5,
+        "vote_count": 270
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/3lEV4CoKoeT2cZ4fbKEJugZcw6Z.jpg",
+        "genre_ids": [
+          27,
+          9648
+        ],
+        "id": 1244944,
+        "original_language": "en",
+        "original_title": "The Woman in the Yard",
+        "overview": "Uma mulher misteriosa aparece repetidamente no jardim da frente de uma família, muitas vezes dando avisos assustadores ou mensagens perturbadoras, deixando os moradores questionando sua identidade, motivos e o perigo potencial que ela pode representar.",
+        "popularity": 232.628,
+        "poster_path": "/aTUsZjeoCTiGtDd4B855BPrRQ4Q.jpg",
+        "release_date": "2025-03-27",
+        "title": "A Mulher no Jardim",
+        "video": false,
+        "vote_average": 6.045,
+        "vote_count": 89
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/zo8CIjJ2nfNOevqNajwMRO6Hwka.jpg",
+        "genre_ids": [
+          16,
+          12,
+          10751,
+          35
+        ],
+        "id": 1241982,
+        "original_language": "en",
+        "original_title": "Moana 2",
+        "overview": "Depois de receber um chamado inesperado de seus ancestrais navegadores, Moana vai viajar para mares distantes da Oceania, em águas perdidas em uma aventura perigosa.",
+        "popularity": 160.0249,
+        "poster_path": "/cMxlhvyhPBPRlErCsq6ImxT5aLJ.jpg",
+        "release_date": "2024-11-21",
+        "title": "Moana 2",
+        "video": false,
+        "vote_average": 7.084,
+        "vote_count": 2264
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/pulJ1iY7GVeppMRipiR7ZGDW7EW.jpg",
+        "genre_ids": [
+          18
+        ],
+        "id": 615,
+        "original_language": "en",
+        "original_title": "The Passion of the Christ",
+        "overview": "O filme narra as últimas 12 horas de Jesus Cristo, que, após ser traído por Judas, é preso e levado para o julgamento de Poncio Pilatos. Sem conseguir encontrar um motivo para sua condenação, ele sofre com a pressão popular, que pede a crucificação de Jesus.",
+        "popularity": 142.0027,
+        "poster_path": "/nhepbUWTnLb9fm4qk9h52MYBszm.jpg",
+        "release_date": "2004-02-25",
+        "title": "A Paixão de Cristo",
+        "video": false,
+        "vote_average": 7.52,
+        "vote_count": 4811
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/1w8kutrRucTd3wlYyu5QlUDMiG1.jpg",
+        "genre_ids": [
+          12,
+          10751,
+          16
+        ],
+        "id": 762509,
+        "original_language": "en",
+        "original_title": "Mufasa: The Lion King",
+        "overview": "Acompanhe a história épica da ascensão improvável do amado rei das Terras do Reino. Órfão e sozinho, Mufasa se perde até encontrar Taka, herdeiro de uma linhagem real. Isso dá início a uma jornada épica que testa os laços entre os dois enquanto enfrentam um inimigo mortal.",
+        "popularity": 160.3211,
+        "poster_path": "/iMVuv6Gz5fj7vZ51IjRF3AiW87y.jpg",
+        "release_date": "2024-12-18",
+        "title": "Mufasa: O Rei Leão",
+        "video": false,
+        "vote_average": 7.417,
+        "vote_count": 2005
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/1YMrOtrW7b4pL2lfD8UciZPOJGs.jpg",
+        "genre_ids": [
+          18,
+          53,
+          9648
+        ],
+        "id": 974576,
+        "original_language": "en",
+        "original_title": "Conclave",
+        "overview": "Após a morte inesperada do atual pontífice, o Cardeal Lawrence é encarregado de conduzir esse processo confidencial. Os líderes mais poderosos da Igreja Católica de todo o mundo se reúnem nos corredores do Vaticano para participar da seleção, cada um com suas próprias ambições. Lawrence se vê no centro de uma conspiração, desvendando segredos que ameaçam não apenas sua fé, mas também as fundações da Igreja.",
+        "popularity": 159.9184,
+        "poster_path": "/wWn78TMMw8yOdr5sG0Yl9v4saoA.jpg",
+        "release_date": "2024-10-25",
+        "title": "Conclave",
+        "video": false,
+        "vote_average": 7.194,
+        "vote_count": 1979
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/zOpe0eHsq0A2NvNyBbtT6sj53qV.jpg",
+        "genre_ids": [
+          28,
+          878,
+          35,
+          10751
+        ],
+        "id": 939243,
+        "original_language": "en",
+        "original_title": "Sonic the Hedgehog 3",
+        "overview": "Sonic, Knuckles e Tails se reúnem contra um novo e poderoso adversário, Shadow, um vilão misterioso com poderes diferentes de tudo que eles já enfrentaram antes. Com suas habilidades superadas em todos os sentidos, a Equipe Sonic deve buscar uma aliança improvável na esperança de parar Shadow e proteger o planeta.",
+        "popularity": 157.3273,
+        "poster_path": "/tfM1T6tAivjvy0sLwt6Y9WvlmzB.jpg",
+        "release_date": "2024-12-19",
+        "title": "Sonic 3: O Filme",
+        "video": false,
+        "vote_average": 7.734,
+        "vote_count": 2452
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/ibF5XVxTzf1ayzZrmiJqgeQ39Qk.jpg",
+        "genre_ids": [
+          28,
+          10752
+        ],
+        "id": 1373723,
+        "original_language": "en",
+        "original_title": "The Codes of War",
+        "overview": "",
+        "popularity": 130.0792,
+        "poster_path": "/oXeiQAfRK90pxxhP5iKPXQqAIN1.jpg",
+        "release_date": "2025-03-20",
+        "title": "The Codes of War",
+        "video": false,
+        "vote_average": 6.2,
+        "vote_count": 59
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/cJCW78MZsyyXBKHo4V25WctK00V.jpg",
+        "genre_ids": [
+          27,
+          28,
+          14
+        ],
+        "id": 1312833,
+        "original_language": "en",
+        "original_title": "A Knight's War",
+        "overview": "",
+        "popularity": 153.5549,
+        "poster_path": "/janjdSMrTRGtPrI1p9uOX66jv7x.jpg",
+        "release_date": "2025-02-07",
+        "title": "A Knight's War",
+        "video": false,
+        "vote_average": 5.4,
+        "vote_count": 15
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/wmqpE7p2dUCEgCnovuovoNXaCXr.jpg",
+        "genre_ids": [
+          27,
+          14,
+          53,
+          9648,
+          28
+        ],
+        "id": 1353117,
+        "original_language": "en",
+        "original_title": "Home Sweet Home: Rebirth",
+        "overview": "Quando uma cidade é invadida por uma multidão possuída por demônios, um policial deve encontrar a fonte do mal para salvar sua família.",
+        "popularity": 150.5279,
+        "poster_path": "/9rCBCm9cyI4JfLEhx3EncyncMR3.jpg",
+        "release_date": "2025-03-20",
+        "title": "Lar Doce Inferno",
+        "video": false,
+        "vote_average": 6.693,
+        "vote_count": 44
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/4eC0tsU9OxR3Adlo1yRJYUDraW9.jpg",
+        "genre_ids": [
+          28,
+          53
+        ],
+        "id": 1092899,
+        "original_language": "en",
+        "original_title": "The Siege",
+        "overview": "Walker, um assassino internacional, é comprometido durante uma missão. Seu chefe o envia para um Centro de Redesignação no qual Walker terá uma nova identidade. Durante sua estada na instalação, uma equipe de incursão implacável invade o complexo em busca de alguém que seu chefe perdeu.",
+        "popularity": 146.5803,
+        "poster_path": "/hVh4hMzkXNLnScudbid6hDvjMPk.jpg",
+        "release_date": "2023-03-10",
+        "title": "The Siege",
+        "video": false,
+        "vote_average": 5.2,
+        "vote_count": 30
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/gsQJOfeW45KLiQeEIsom94QPQwb.jpg",
+        "genre_ids": [
+          28,
+          53
+        ],
+        "id": 1125899,
+        "original_language": "en",
+        "original_title": "Cleaner",
+        "overview": "Ativistas criminosos fazem 300 reféns. Um extremista planeja assassinato em massa como mensagem para o mundo. Ex-soldada que virou limpadora de janelas tenta resgatar os reféns.",
+        "popularity": 143.0193,
+        "poster_path": "/mwzDApMZAGeYCEVjhegKvCzDX0W.jpg",
+        "release_date": "2025-02-19",
+        "title": "Cleaner",
+        "video": false,
+        "vote_average": 6.601,
+        "vote_count": 222
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/fzv87rT0jlAkh5Uf9PpIlUj6Nj8.jpg",
+        "genre_ids": [
+          28,
+          53,
+          80
+        ],
+        "id": 1195585,
+        "original_language": "en",
+        "original_title": "The Hard Hit",
+        "overview": "Um agente da Interpol persegue o líder de um sindicato do crime até Las Vegas. Mas quando sua esposa e filha são brutalmente assassinadas pela organização criminosa, ele resolve ultrapassar os limites da lei em busca de vingança.",
+        "popularity": 138.2336,
+        "poster_path": "/ymZ3MewWInM78zSIwW9l1m4M5cQ.jpg",
+        "release_date": "2023-10-20",
+        "title": "Vingança Acima da Lei",
+        "video": false,
+        "vote_average": 6.722,
+        "vote_count": 18
+      }
+    ],
+    "total_pages": 49902,
+    "total_results": 998024
+  },
+  "movie_1293286": {
+    "adult": false,
+    "backdrop_path": "/zksO4lVnRKRoaSYzh2EDn2Z3Pel.jpg",
+    "belongs_to_collection": null,
+    "budget": 0,
+    "genres": [
+      {
+        "id": 37,
+        "name": "Faroeste"
+      },
+      {
+        "id": 28,
+        "name": "Ação"
+      }
+    ],
+    "homepage": "",
+    "id": 1293286,
+    "imdb_id": "tt24850708",
+    "origin_country": [
+      "US"
+    ],
+    "original_language": "en",
+    "original_title": "Gunslingers",
+    "overview": "",
+    "popularity": 292.2274,
+    "poster_path": "/O7REXWPANWXvX2jhQydHjAq2DV.jpg",
+    "production_companies": [
+      {
+        "id": 47354,
+        "logo_path": null,
+        "name": "5150 Action",
+        "origin_country": ""
+      },
+      {
+        "id": 102884,
+        "logo_path": null,
+        "name": "Skibavision",
+        "origin_country": ""
+      },
+      {
+        "id": 255520,
+        "logo_path": null,
+        "name": "ZTA Entertainment",
+        "origin_country": ""
+      },
+      {
+        "id": 255521,
+        "logo_path": null,
+        "name": "ZTA & I Films",
+        "origin_country": ""
+      },
+      {
+        "id": 185589,
+        "logo_path": null,
+        "name": "Milestone Studios",
+        "origin_country": ""
+      },
+      {
+        "id": 32923,
+        "logo_path": null,
+        "name": "Ambitious Entertainment",
+        "origin_country": ""
+      },
+      {
+        "id": 164686,
+        "logo_path": "/f4YiwKcpmuNcoHxCUCIWZKABukX.png",
+        "name": "Brilliant Pictures",
+        "origin_country": "GB"
+      },
+      {
+        "id": 2374,
+        "logo_path": null,
+        "name": "Thats Hollywood",
+        "origin_country": ""
+      },
+      {
+        "id": 255522,
+        "logo_path": null,
+        "name": "Aarimax Films Production",
+        "origin_country": ""
+      },
+      {
+        "id": 3604,
+        "logo_path": "/jC6Hk3ZyNRlVPJsA0xGlAhgd2RP.png",
+        "name": "Grindstone Entertainment Group",
+        "origin_country": "US"
+      }
+    ],
+    "production_countries": [
+      {
+        "iso_3166_1": "US",
+        "name": "United States of America"
+      },
+      {
+        "iso_3166_1": "GB",
+        "name": "United Kingdom"
+      }
+    ],
+    "release_date": "2025-04-11",
+    "revenue": 0,
+    "runtime": 104,
+    "spoken_languages": [
+      {
+        "english_name": "English",
+        "iso_639_1": "en",
+        "name": "English"
+      }
+    ],
+    "status": "Released",
+    "tagline": "",
+    "title": "Gunslingers",
+    "video": false,
+    "vote_average": 6.618,
+    "vote_count": 34,
+    "keywords": {
+      "keywords": []
+    },
+    "credits": {
+      "cast": [
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 10822,
+          "known_for_department": "Acting",
+          "name": "Stephen Dorff",
+          "original_name": "Stephen Dorff",
+          "popularity": 2.9463,
+          "profile_path": "/kuFyGa2HZB7hAQTUn3WKlgKAVjm.jpg",
+          "cast_id": 4,
+          "character": "Thomas Keller",
+          "credit_id": "664c391aacebac0e478a04c5",
+          "order": 0
+        },
+        {
+          "adult": false,
+          "gender": 1,
+          "id": 69122,
+          "known_for_department": "Acting",
+          "name": "Heather Graham",
+          "original_name": "Heather Graham",
+          "popularity": 2.772,
+          "profile_path": "/avYdNkeg1oTvmrNJbFDcTlBCkKs.jpg",
+          "cast_id": 7,
+          "character": "Valerie Keller",
+          "credit_id": "664c39348cd8de4dba1e195c",
+          "order": 1
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 2963,
+          "known_for_department": "Acting",
+          "name": "Nicolas Cage",
+          "original_name": "Nicolas Cage",
+          "popularity": 5.8205,
+          "profile_path": "/ar33qcWbEgREn07ZpXv5Pbj8hbM.jpg",
+          "cast_id": 5,
+          "character": "Ben",
+          "credit_id": "664c3920ddbb1ab83d79bbe5",
+          "order": 2
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 36631,
+          "known_for_department": "Acting",
+          "name": "Randall Batinkoff",
+          "original_name": "Randall Batinkoff",
+          "popularity": 0.5181,
+          "profile_path": "/tq4njPdsUNXjnIAnPetT6B423BW.jpg",
+          "cast_id": 10,
+          "character": "Doc",
+          "credit_id": "664c394bacebac0e478a04cc",
+          "order": 3
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 1319440,
+          "known_for_department": "Acting",
+          "name": "Cooper Barnes",
+          "original_name": "Cooper Barnes",
+          "popularity": 1.6161,
+          "profile_path": "/b9Pqy8KU4TVnLhvkASxrNmljvkE.jpg",
+          "cast_id": 13,
+          "character": "Levi",
+          "credit_id": "664c396c62724628013040a8",
+          "order": 4
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 21629,
+          "known_for_department": "Acting",
+          "name": "Tzi Ma",
+          "original_name": "Tzi Ma",
+          "popularity": 1.0673,
+          "profile_path": "/x4fz0LCIiBNGdil3nBYO22W7QJ0.jpg",
+          "cast_id": 11,
+          "character": "Lin",
+          "credit_id": "664c3953781c4b29fb79928d",
+          "order": 5
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 1192496,
+          "known_for_department": "Acting",
+          "name": "Jeremy Kent Jackson",
+          "original_name": "Jeremy Kent Jackson",
+          "popularity": 0.3272,
+          "profile_path": "/jpVI15LVSS8f7VGDay35mGaxvAR.jpg",
+          "cast_id": 16,
+          "character": "Robert Keller",
+          "credit_id": "664c399312042b04a8c5138a",
+          "order": 6
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 36055,
+          "known_for_department": "Acting",
+          "name": "Costas Mandylor",
+          "original_name": "Costas Mandylor",
+          "popularity": 0.8478,
+          "profile_path": "/yPkQdbhCj2EJM0cjDtkuJTlFp86.jpg",
+          "cast_id": 6,
+          "character": "Jericho",
+          "credit_id": "664c392c1de20b12a125976a",
+          "order": 7
+        },
+        {
+          "adult": false,
+          "gender": 1,
+          "id": 3258734,
+          "known_for_department": "Acting",
+          "name": "Scarlet Rose Stallone",
+          "original_name": "Scarlet Rose Stallone",
+          "popularity": 0.6317,
+          "profile_path": "/13f6FANe7TdbvjtZCbArygnDv1S.jpg",
+          "cast_id": 12,
+          "character": "Bella",
+          "credit_id": "664c396239a681446b798564",
+          "order": 8
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 18687,
+          "known_for_department": "Acting",
+          "name": "William McNamara",
+          "original_name": "William McNamara",
+          "popularity": 0.7496,
+          "profile_path": "/hVOdM3UUmJqpREnBxzm0J4j0b5R.jpg",
+          "cast_id": 9,
+          "character": "Kelly",
+          "credit_id": "664c394522e4e992e98a0372",
+          "order": 9
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 1164413,
+          "known_for_department": "Acting",
+          "name": "Mohamed Karim",
+          "original_name": "Mohamed Karim",
+          "popularity": 0.1353,
+          "profile_path": "/H4FmwCE6spEri0mwocZ2tEsy2e.jpg",
+          "cast_id": 17,
+          "character": "Marv",
+          "credit_id": "664c399e1b54aa0ce8f7499d",
+          "order": 10
+        },
+        {
+          "adult": false,
+          "gender": 1,
+          "id": 131934,
+          "known_for_department": "Acting",
+          "name": "Bre Blair",
+          "original_name": "Bre Blair",
+          "popularity": 0.9293,
+          "profile_path": "/nDrqKb2I800qJ3UmME6FJEVOq0P.jpg",
+          "cast_id": 8,
+          "character": "Mary",
+          "credit_id": "664c393dfcab3b5b5179b565",
+          "order": 11
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 2403016,
+          "known_for_department": "Acting",
+          "name": "Forrest Wilder",
+          "original_name": "Forrest Wilder",
+          "popularity": 0.1255,
+          "profile_path": null,
+          "cast_id": 27,
+          "character": "Kid",
+          "credit_id": "67faaeca7b43bdce20aed5aa",
+          "order": 12
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 1333809,
+          "known_for_department": "Acting",
+          "name": "Forrie J. Smith",
+          "original_name": "Forrie J. Smith",
+          "popularity": 1.2882,
+          "profile_path": "/A3JvvFVzfF5M7Pvi2csISkoqxDC.jpg",
+          "cast_id": 28,
+          "character": "Barker",
+          "credit_id": "67faaefb1bc639566adab9ca",
+          "order": 13
+        },
+        {
+          "adult": false,
+          "gender": 1,
+          "id": 123235,
+          "known_for_department": "Acting",
+          "name": "Laurie Love",
+          "original_name": "Laurie Love",
+          "popularity": 0.0817,
+          "profile_path": "/aJbbk2z2B0nxIEQMNSfcPa1Inqp.jpg",
+          "cast_id": 19,
+          "character": "Thalia",
+          "credit_id": "67c8da8121982a0fe2032ca2",
+          "order": 14
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 5368046,
+          "known_for_department": "Acting",
+          "name": "Ava Monroe Tadross",
+          "original_name": "Ava Monroe Tadross",
+          "popularity": 0.0168,
+          "profile_path": null,
+          "cast_id": 29,
+          "character": "Grace",
+          "credit_id": "67faaf287b43bdce20aed605",
+          "order": 15
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 11867,
+          "known_for_department": "Acting",
+          "name": "Eric Mabius",
+          "original_name": "Eric Mabius",
+          "popularity": 0.7871,
+          "profile_path": "/ywIbk1l5qqN8TZcHAq0KSFRgegp.jpg",
+          "cast_id": 30,
+          "character": "Edward",
+          "credit_id": "67faaf34ea80d851759a0641",
+          "order": 16
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 2447483,
+          "known_for_department": "Acting",
+          "name": "Mitchell Hoog",
+          "original_name": "Mitchell Hoog",
+          "popularity": 0.3587,
+          "profile_path": "/tWKaWEVmGXqibeFWbZfublDqgUx.jpg",
+          "cast_id": 31,
+          "character": "Jesse Rockefeller",
+          "credit_id": "67faaf48ea80d851759a064b",
+          "order": 17
+        },
+        {
+          "adult": false,
+          "gender": 1,
+          "id": 5285599,
+          "known_for_department": "Acting",
+          "name": "Brooklen Wilkes",
+          "original_name": "Brooklen Wilkes",
+          "popularity": 0.0214,
+          "profile_path": null,
+          "cast_id": 21,
+          "character": "Hope",
+          "credit_id": "67c8db33fb4402dce1032d16",
+          "order": 18
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 1198967,
+          "known_for_department": "Acting",
+          "name": "Dan O'Brien",
+          "original_name": "Dan O'Brien",
+          "popularity": 0.065,
+          "profile_path": "/xgVWileImK0IhOODM5JuhFt4hAh.jpg",
+          "cast_id": 20,
+          "character": "Josh",
+          "credit_id": "67c8dad6ba973d9f7f0cbecc",
+          "order": 19
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 5368054,
+          "known_for_department": "Acting",
+          "name": "Kartuah Chapman",
+          "original_name": "Kartuah Chapman",
+          "popularity": 0.0327,
+          "profile_path": null,
+          "cast_id": 32,
+          "character": "Tim",
+          "credit_id": "67faaf81ea80d851759a0685",
+          "order": 20
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 2432657,
+          "known_for_department": "Acting",
+          "name": "Michael Spagnoli",
+          "original_name": "Michael Spagnoli",
+          "popularity": 0.0453,
+          "profile_path": null,
+          "cast_id": 35,
+          "character": "DA Hawkins",
+          "credit_id": "67fc2495de5e4dec62ae1103",
+          "order": 21
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 5370647,
+          "known_for_department": "Acting",
+          "name": "Hunter Bines",
+          "original_name": "Hunter Bines",
+          "popularity": 0.0143,
+          "profile_path": null,
+          "cast_id": 36,
+          "character": "Whyos' Captain",
+          "credit_id": "67fc2c2b7c29ae5bc3d91981",
+          "order": 22
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 5370648,
+          "known_for_department": "Acting",
+          "name": "Taylor Bines",
+          "original_name": "Taylor Bines",
+          "popularity": 0.0143,
+          "profile_path": null,
+          "cast_id": 37,
+          "character": "Whyos' Lieutenant",
+          "credit_id": "67fc2c38c1e0a708cbacf15b",
+          "order": 23
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 1894879,
+          "known_for_department": "Acting",
+          "name": "Francis Cronin",
+          "original_name": "Francis Cronin",
+          "popularity": 0.0388,
+          "profile_path": null,
+          "cast_id": 38,
+          "character": "OLeary",
+          "credit_id": "67fc2c43ec22ba3b49d964eb",
+          "order": 24
+        },
+        {
+          "adult": false,
+          "gender": 1,
+          "id": 1279081,
+          "known_for_department": "Acting",
+          "name": "Elisabetta Fantone",
+          "original_name": "Elisabetta Fantone",
+          "popularity": 0.2058,
+          "profile_path": "/fj41Ckf80R9bXLC3R2vCV01SPY7.jpg",
+          "cast_id": 39,
+          "character": "Annie",
+          "credit_id": "67fc2c4d7c29ae5bc3d9198d",
+          "order": 25
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 5370650,
+          "known_for_department": "Acting",
+          "name": "Matthew Daniel Stevens",
+          "original_name": "Matthew Daniel Stevens",
+          "popularity": 0.0071,
+          "profile_path": null,
+          "cast_id": 40,
+          "character": "Whyo Gang",
+          "credit_id": "67fc2c5a3110bd82dfad0ed1",
+          "order": 26
+        }
+      ],
+      "crew": [
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 123238,
+          "known_for_department": "Directing",
+          "name": "Brian Skiba",
+          "original_name": "Brian Skiba",
+          "popularity": 0.2212,
+          "profile_path": "/bcxGMf0f11OP2lJfBtIQW0OwxIe.jpg",
+          "credit_id": "664c38fdf1608f16fcc5097b",
+          "department": "Writing",
+          "job": "Writer"
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 123238,
+          "known_for_department": "Directing",
+          "name": "Brian Skiba",
+          "original_name": "Brian Skiba",
+          "popularity": 0.2212,
+          "profile_path": "/bcxGMf0f11OP2lJfBtIQW0OwxIe.jpg",
+          "credit_id": "664c38f6855bea90f21e1719",
+          "department": "Directing",
+          "job": "Director"
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 123238,
+          "known_for_department": "Directing",
+          "name": "Brian Skiba",
+          "original_name": "Brian Skiba",
+          "popularity": 0.2212,
+          "profile_path": "/bcxGMf0f11OP2lJfBtIQW0OwxIe.jpg",
+          "credit_id": "664c390b1d78b22310c50ab0",
+          "department": "Production",
+          "job": "Producer"
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 112834,
+          "known_for_department": "Production",
+          "name": "Alan B. Bursteen",
+          "original_name": "Alan B. Bursteen",
+          "popularity": 0.0707,
+          "profile_path": null,
+          "credit_id": "678d2b0ba93ce48bca4333ca",
+          "department": "Production",
+          "job": "Executive Producer"
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 36631,
+          "known_for_department": "Acting",
+          "name": "Randall Batinkoff",
+          "original_name": "Randall Batinkoff",
+          "popularity": 0.5181,
+          "profile_path": "/tq4njPdsUNXjnIAnPetT6B423BW.jpg",
+          "credit_id": "67c8db9abd7861478b248d92",
+          "department": "Production",
+          "job": "Producer"
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 2146566,
+          "known_for_department": "Acting",
+          "name": "Kirsten Grace Hoge",
+          "original_name": "Kirsten Grace Hoge",
+          "popularity": 0.0214,
+          "profile_path": null,
+          "credit_id": "67c8dbe401a24b38e5032d47",
+          "department": "Production",
+          "job": "Co-Producer"
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 5285601,
+          "known_for_department": "Production",
+          "name": "Hilary Lambert",
+          "original_name": "Hilary Lambert",
+          "popularity": 0.0071,
+          "profile_path": null,
+          "credit_id": "67c8dc143dd7da394f248d20",
+          "department": "Production",
+          "job": "Co-Producer"
+        },
+        {
+          "adult": false,
+          "gender": 0,
+          "id": 61686,
+          "known_for_department": "Production",
+          "name": "Scott Reed",
+          "original_name": "Scott Reed",
+          "popularity": 0.0863,
+          "profile_path": null,
+          "credit_id": "67c8dc403dd7da394f248d58",
+          "department": "Production",
+          "job": "Producer"
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 587844,
+          "known_for_department": "Production",
+          "name": "Jamie R. Thompson",
+          "original_name": "Jamie R. Thompson",
+          "popularity": 0.0239,
+          "profile_path": null,
+          "credit_id": "67c8dc59f48e8c25810cbd87",
+          "department": "Production",
+          "job": "Producer"
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 80888,
+          "known_for_department": "Sound",
+          "name": "Richard Patrick",
+          "original_name": "Richard Patrick",
+          "popularity": 0.1038,
+          "profile_path": "/jlesBVAInixe8xMylpm6TOOqYfH.jpg",
+          "credit_id": "67fc245f765c5222f39935b4",
+          "department": "Sound",
+          "job": "Original Music Composer"
+        },
+        {
+          "adult": false,
+          "gender": 2,
+          "id": 1362475,
+          "known_for_department": "Camera",
+          "name": "Patrice Lucien Cochet",
+          "original_name": "Patrice Lucien Cochet",
+          "popularity": 0.0286,
+          "profile_path": "/9K933R5qL6pmPFoNijP3ADI68JW.jpg",
+          "credit_id": "67fc2468437f0b80eeace2bb",
+          "department": "Camera",
+          "job": "Director of Photography"
+        }
+      ]
+    }
+  },
+  "popular_page_2": {
+    "page": 2,
+    "results": [
+      {
+        "adult": false,
+        "backdrop_path": "/is9bmV6uYXu7LjZGJczxrjJDlv8.jpg",
+        "genre_ids": [
+          28,
+          12
+        ],
+        "id": 1229730,
+        "original_language": "fr",
+        "original_title": "Carjackers",
+        "overview": "De dia, eles são invisíveis: manobristas, hostess e barmen em um hotel de luxo. À noite, são os Mestres do Assalto, um grupo de motoristas talentosos que persegue e rouba clientes ricos na estrada. Ao planejarem o maior dos golpes, o diretor do hotel contrata um matador para pará-los a qualquer custo. Com o perigo se aproximando, Nora, Zoe, Steve e Prestance conseguirão realizar o serviço?",
+        "popularity": 132.4692,
+        "poster_path": "/9AzMgk6HVqwqTmAbzAuD8fVmnOd.jpg",
+        "release_date": "2025-03-27",
+        "title": "Mestres do Assalto",
+        "video": false,
+        "vote_average": 6.1,
+        "vote_count": 155
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/hNA73rnG4PjSwgojaC2gbO1f8Rt.jpg",
+        "genre_ids": [
+          878,
+          35,
+          12
+        ],
+        "id": 696506,
+        "original_language": "en",
+        "original_title": "Mickey 17",
+        "overview": "Mickey faz parte de um programa espacial de colonização e sempre é enviado para missões perigosas, quase suicidas. Se morrer, ele é clonado e boa parte de suas memórias são recuperadas. Mas, após seis mortes, ele começa a entender o porquê de seu cargo nunca ter sido ocupado antes.",
+        "popularity": 129.3073,
+        "poster_path": "/is1U9n0e9ofg50U1T7p2WZuIwiO.jpg",
+        "release_date": "2025-02-28",
+        "title": "Mickey 17",
+        "video": false,
+        "vote_average": 6.906,
+        "vote_count": 1698
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/vNUwK5P42m81uG57kKI1WxSZwIQ.jpg",
+        "genre_ids": [
+          35,
+          10749
+        ],
+        "id": 1403735,
+        "original_language": "te",
+        "original_title": "లైలా",
+        "overview": "",
+        "popularity": 126.3749,
+        "poster_path": "/l4gsNxFPGpzbq0D6QK1a8vO1lBz.jpg",
+        "release_date": "2025-02-14",
+        "title": "లైలా",
+        "video": false,
+        "vote_average": 5.5,
+        "vote_count": 2
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/lqHt4icP1GTaNBeVTxTrwTZdoAW.jpg",
+        "genre_ids": [
+          28,
+          53,
+          9648,
+          80
+        ],
+        "id": 1195430,
+        "original_language": "hi",
+        "original_title": "देवा",
+        "overview": "Um policial jovem e obstinado pega um caso complicado e decide agir por conta própria. Afinal, vale tudo para desmantelar uma rede letal de corrupção e mentiras.",
+        "popularity": 118.3767,
+        "poster_path": "/gHIyRuVTs3sbvyDaH6kOHeDCEeD.jpg",
+        "release_date": "2025-01-31",
+        "title": "Deva",
+        "video": false,
+        "vote_average": 6.08,
+        "vote_count": 44
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/qiVrapzgrDO7c6yQTSvn0dhwsn8.jpg",
+        "genre_ids": [
+          10749,
+          18
+        ],
+        "id": 1252309,
+        "original_language": "es",
+        "original_title": "Pídeme lo que quieras",
+        "overview": "Após a morte de seu pai, Eric Zimmerman viaja para a Espanha para supervisionar as filiais de sua empresa. Em Madri, ele se apaixona por Judith e se envolve em um relacionamento intenso e erótico cheio de exploração. Eric teme que seu segredo possa acabar com o caso deles.",
+        "popularity": 114.8903,
+        "poster_path": "/76qnVxU2rPdVvipBN3DPQH6fVYB.jpg",
+        "release_date": "2024-11-29",
+        "title": "Peça-me o Que Quiser",
+        "video": false,
+        "vote_average": 5.9,
+        "vote_count": 150
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/m2mzlsJjE3UAqeUB5fLUkpWg4Iq.jpg",
+        "genre_ids": [
+          53,
+          878
+        ],
+        "id": 1165067,
+        "original_language": "en",
+        "original_title": "Cosmic Chaos",
+        "overview": "",
+        "popularity": 109.4459,
+        "poster_path": "/mClzWv7gBqgXfjZXp49Enyoex1v.jpg",
+        "release_date": "2023-08-03",
+        "title": "Cosmic Chaos",
+        "video": false,
+        "vote_average": 6.0,
+        "vote_count": 47
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/hwlyY7LJdEFbCPaGNXiskKKmJ5X.jpg",
+        "genre_ids": [
+          28,
+          53
+        ],
+        "id": 1126166,
+        "original_language": "en",
+        "original_title": "Flight Risk",
+        "overview": "Um piloto de avião transporta um agente federal e um fugitivo para julgamento através das montanhas do Alasca. A tensão aumenta quando verdades são reveladas e ninguém a bordo parecem ser quem realmente são.",
+        "popularity": 108.0029,
+        "poster_path": "/4LPIIwWiedwHeWgRXOjcBaL1tnv.jpg",
+        "release_date": "2025-01-22",
+        "title": "Ameaça no Ar",
+        "video": false,
+        "vote_average": 6.1,
+        "vote_count": 651
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/kYqEsUtilXXcb7FDfGIUaDq7j5F.jpg",
+        "genre_ids": [
+          53,
+          35
+        ],
+        "id": 1101401,
+        "original_language": "en",
+        "original_title": "Sugar Baby",
+        "overview": "",
+        "popularity": 107.6084,
+        "poster_path": "/z7NyxmdJ1ypn3Y6BVizjGODuBdO.jpg",
+        "release_date": "2024-10-15",
+        "title": "Sugar Baby",
+        "video": false,
+        "vote_average": 6.038,
+        "vote_count": 13
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/e807jDKiFcntZS32ze88X6I96OD.jpg",
+        "genre_ids": [
+          16,
+          28
+        ],
+        "id": 1297763,
+        "original_language": "ja",
+        "original_title": "ニンジャバットマン対ヤクザリーグ",
+        "overview": "Nesta continuação de Batman Ninja, a Família Batman volta ao presente e descobre que o Japão desapareceu, e agora uma ilha gigante chamada “Hinomoto” flutua nos céus de Gotham City. No topo estão os Yakuza, um grupo de indivíduos superpoderosos que reinam sem honra ou humanidade e se parecem estranhamente com a Liga da Justiça. Agora, cabe a Batman e seus aliados salvar Gotham!",
+        "popularity": 104.4961,
+        "poster_path": "/E0Kfd0UsphezvdhLVNtOTXzOLT.jpg",
+        "release_date": "2025-03-17",
+        "title": "Batman Ninja vs. Liga da Yakuza",
+        "video": false,
+        "vote_average": 6.63,
+        "vote_count": 146
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/9OO6I25MHhCDd0XwNk4oZl0fpwB.jpg",
+        "genre_ids": [
+          28,
+          18
+        ],
+        "id": 1261050,
+        "original_language": "da",
+        "original_title": "De lydløse",
+        "overview": "",
+        "popularity": 104.3067,
+        "poster_path": "/63tvLp9pYygvAaqWpikjTq9FHy7.jpg",
+        "release_date": "2024-10-31",
+        "title": "De lydløse",
+        "video": false,
+        "vote_average": 5.756,
+        "vote_count": 43
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/9nhjGaFLKtddDPtPaX5EmKqsWdH.jpg",
+        "genre_ids": [
+          10749,
+          878,
+          53
+        ],
+        "id": 950396,
+        "original_language": "en",
+        "original_title": "The Gorge",
+        "overview": "Dois agentes altamente treinados se aproximam à distância após serem enviados para proteger lados opostos de um desfiladeiro misterioso. Quando um mal emerge, eles precisam trabalhar juntos para sobreviver ao que está lá dentro.",
+        "popularity": 104.0054,
+        "poster_path": "/7zL6RxMPmpPSdU5OTdVC4dtiKcr.jpg",
+        "release_date": "2025-02-13",
+        "title": "Entre Montanhas",
+        "video": false,
+        "vote_average": 7.73,
+        "vote_count": 2442
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/4mM7m9L3XlPLq4vNNy3P8yDSXNM.jpg",
+        "genre_ids": [
+          53,
+          80,
+          18
+        ],
+        "id": 1371202,
+        "original_language": "nl",
+        "original_title": "iHostage",
+        "overview": "Um homem armado entra em uma Apple Store no centro de Amsterdã, e a polícia enfrenta um desafio muito complexo para resolver a questão.",
+        "popularity": 99.0353,
+        "poster_path": "/a607w49404wz7O5vvn5cgoj7DOQ.jpg",
+        "release_date": "2025-04-18",
+        "title": "iHostage",
+        "video": false,
+        "vote_average": 6.131,
+        "vote_count": 84
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "id": 299536,
+        "original_language": "en",
+        "original_title": "Avengers: Infinity War",
+        "overview": "Homem de Ferro, Thor, Hulk e os Vingadores se unem para combater seu inimigo mais poderoso, o maligno Thanos. Em uma missão para coletar todas as seis pedras infinitas, Thanos planeja usá-las para infligir sua vontade maléfica sobre a realidade.",
+        "popularity": 97.1289,
+        "poster_path": "/d6jUbQj4E4R5MJlFYfdzANEZbkL.jpg",
+        "release_date": "2018-04-25",
+        "title": "Vingadores: Guerra Infinita",
+        "video": false,
+        "vote_average": 8.235,
+        "vote_count": 30435
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/nhx0ttmAS2w8e6hyIcKoNvgHoix.jpg",
+        "genre_ids": [
+          27,
+          53,
+          14
+        ],
+        "id": 1020414,
+        "original_language": "en",
+        "original_title": "Peter Pan's Neverland Nightmare",
+        "overview": "A famosa história de Peter Pan foi reimaginada com uma reviravolta horrível.",
+        "popularity": 92.611,
+        "poster_path": "/mOR1Ks0EcXocwMV4EPv4letz0F5.jpg",
+        "release_date": "2025-01-13",
+        "title": "Peter Pan's Neverland Nightmare",
+        "video": false,
+        "vote_average": 4.965,
+        "vote_count": 57
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/6J259Zuq09Bt2PLUNeTS5a3DwLZ.jpg",
+        "genre_ids": [
+          28,
+          35,
+          53
+        ],
+        "id": 1212855,
+        "original_language": "en",
+        "original_title": "Fight or Flight",
+        "overview": "",
+        "popularity": 91.6926,
+        "poster_path": "/x4nWnfgJvL045rcUCSJzfgIIY9i.jpg",
+        "release_date": "2025-04-03",
+        "title": "Fight or Flight",
+        "video": false,
+        "vote_average": 5.6,
+        "vote_count": 49
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/o5vasl0xbZWWKQnAlaBTSgntHH2.jpg",
+        "genre_ids": [
+          27
+        ],
+        "id": 1208808,
+        "original_language": "es",
+        "original_title": "Turno nocturno",
+        "overview": "",
+        "popularity": 89.85,
+        "poster_path": "/iSSx9Bys64vlOkvkyKXtp19P7Re.jpg",
+        "release_date": "2024-10-31",
+        "title": "Turno nocturno",
+        "video": false,
+        "vote_average": 6.405,
+        "vote_count": 121
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/deUWVEgNh2IGjShyymZhaYP40ye.jpg",
+        "genre_ids": [
+          28,
+          12,
+          53
+        ],
+        "id": 1356039,
+        "original_language": "es",
+        "original_title": "Contraataque",
+        "overview": "Uma missão de resgate faz surgir um novo inimigo, levando o capitão Guerrero e seus soldados de elite a enfrentar uma emboscada de um grupo criminoso.",
+        "popularity": 86.0256,
+        "poster_path": "/iQsMy1xn8NG1VfVWFpEhhAsp4pi.jpg",
+        "release_date": "2025-02-27",
+        "title": "Contra-Ataque",
+        "video": false,
+        "vote_average": 8.4,
+        "vote_count": 643
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/xb9wpY31SeVZbfkevYuolhfV63w.jpg",
+        "genre_ids": [
+          10751,
+          14
+        ],
+        "id": 447273,
+        "original_language": "en",
+        "original_title": "Snow White",
+        "overview": "Quando a Rainha Má manda matarem sua enteada por inveja de sua beleza, Branca de Neve foge do reino. Ela percorre a floresta e acha uma casinha onde vivem sete anões amigáveis com quem passa viver. Porém, a moça ainda não está a salvo, já que a bruxa planeja dar um fim a sua vida com uma maçã envenenada.",
+        "popularity": 84.4751,
+        "poster_path": "/t0mabA2l3KE9Ai350BEKz61Ltor.jpg",
+        "release_date": "2025-03-19",
+        "title": "Branca de Neve",
+        "video": false,
+        "vote_average": 4.559,
+        "vote_count": 576
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/yMoEGh8kDEwqsoJumnQLwFJ9V6h.jpg",
+        "genre_ids": [
+          53,
+          28
+        ],
+        "id": 1087891,
+        "original_language": "en",
+        "original_title": "The Amateur",
+        "overview": "Depois que sua esposa é tragicamente morta em um ataque terrorista em Londres, um criptógrafo da CIA exige que seus chefes vão atrás dos assassinos. Quando fica claro que eles não agirão devido a prioridades internas conflitantes, ele chantageia a agência para treiná-lo e deixá-lo ir atrás deles sozinho.",
+        "popularity": 83.4036,
+        "poster_path": "/bAQAGxxqwK8bcqEYLEo6cN7UNn6.jpg",
+        "release_date": "2025-04-09",
+        "title": "Operação Vingança",
+        "video": false,
+        "vote_average": 6.648,
+        "vote_count": 176
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg",
+        "genre_ids": [
+          28,
+          878,
+          12
+        ],
+        "id": 912649,
+        "original_language": "en",
+        "original_title": "Venom: The Last Dance",
+        "overview": "Eddie e Venom estão fugindo. Perseguidos pelos dois mundos, a dupla é forçada a tomar uma decisão devastadora que vai fechar as cortinas da última rodada de Venom e Eddie.",
+        "popularity": 78.3821,
+        "poster_path": "/p8CHaGudwUzBSU7dTjzMd71Iv4M.jpg",
+        "release_date": "2024-10-22",
+        "title": "Venom: A Última Rodada",
+        "video": false,
+        "vote_average": 6.8,
+        "vote_count": 3209
+      }
+    ],
+    "total_pages": 49900,
+    "total_results": 997986
+  }
+}
