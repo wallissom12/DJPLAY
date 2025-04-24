@@ -3,7 +3,9 @@
     "points_per_second": 1,
     "game_frequency_minutes": 60,
     "notification_minutes_before": 5,
-    "admin_ids": [],
+    "admin_ids": [
+        6841922027
+    ],
     "prize_amount": "10,00",
     "prize_frequency": "weekly"
 }
