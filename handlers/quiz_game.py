@@ -177,10 +177,11 @@ async def handle_quiz_callback(update: Update, context: ContextTypes.DEFAULT_TYP
         # Add points to the user
         add_points(user.id, points, "quiz", response_time)
     
-    # End the game
-    end_game(chat_id, "quiz")
-    
-    # Create a new keyboard with the answers marked
+    try:
+        # End the game
+        end_game(chat_id, "quiz")
+        
+        # Create a new keyboard with the answers marked
     keyboard = []
     for i, option in enumerate(options):
         if i == answer_index and is_correct:
