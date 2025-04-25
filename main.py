@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -18,8 +19,8 @@ from app import app
 
 def start_web_server():
     """Função para iniciar o servidor web Flask."""
-    logger.info("Iniciando servidor web na porta 8080...")
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    logger.info("Iniciando servidor web na porta 5000...")
+    app.run(host='0.0.0.0', port=5000, debug=False)
 
 def start_telegram_bot():
     """Função para iniciar o bot do Telegram."""
@@ -31,12 +32,5 @@ def start_telegram_bot():
         logger.error(f"Erro ao iniciar o bot do Telegram: {e}")
 
 if __name__ == "__main__":
-    # Verificar argumentos de linha de comando
-    if len(sys.argv) > 1:
-        if sys.argv[1] == "--web":
-            start_web_server()
-        elif sys.argv[1] == "--bot":
-            start_telegram_bot()
-    else:
-        # Iniciar apenas o bot
-        start_telegram_bot()
+    # Iniciar apenas o bot do Telegram
+    start_telegram_bot()
