@@ -30,27 +30,13 @@ def start_telegram_bot():
     except Exception as e:
         logger.error(f"Erro ao iniciar o bot do Telegram: {e}")
 
-# Este arquivo serve como ponto de entrada tanto para a aplicação web Flask quanto para o bot do Telegram
 if __name__ == "__main__":
-    # Verificar se há argumentos de linha de comando
+    # Verificar argumentos de linha de comando
     if len(sys.argv) > 1:
         if sys.argv[1] == "--web":
-            # Iniciar apenas o servidor web
             start_web_server()
         elif sys.argv[1] == "--bot":
-            # Iniciar apenas o bot do Telegram
             start_telegram_bot()
-        else:
-            print(f"Argumento desconhecido: {sys.argv[1]}")
-            print("Use --web para iniciar o servidor web ou --bot para iniciar o bot do Telegram")
     else:
-        # Iniciar ambos em threads separadas
-        logger.info("Iniciando servidor web e bot do Telegram em threads separadas...")
-        
-        # Thread para o servidor web
-        web_thread = threading.Thread(target=start_web_server)
-        web_thread.daemon = True
-        web_thread.start()
-        
-        # Iniciar o bot do Telegram na thread principal
+        # Iniciar apenas o bot
         start_telegram_bot()

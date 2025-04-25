@@ -162,8 +162,9 @@ async def handle_quiz_callback(update: Update, context: ContextTypes.DEFAULT_TYP
     is_correct = user_answer == correct_answer
     
     # Remove timeout job if exists
-    for job in context.job_queue.get_jobs_by_name(f"quiz_timeout_{chat_id}"):
-        job.schedule_removal()
+    if context.job_queue:
+        for job in context.job_queue.get_jobs_by_name(f"quiz_timeout_{chat_id}"):
+            job.schedule_removal()
     
     # Calculate points based on correctness and response time
     points = 0
