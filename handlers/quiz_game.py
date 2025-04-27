@@ -182,7 +182,7 @@ async def handle_quiz_callback(update: Update, context: ContextTypes.DEFAULT_TYP
         end_game(chat_id, "quiz")
         
         # Create a new keyboard with the answers marked
-    keyboard = []
+        keyboard = []
     for i, option in enumerate(options):
         if i == answer_index and is_correct:
             # User's correct answer

@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 from database import (
     get_leaderboard, get_invite_leaderboard, get_setting, update_setting,
     get_shop_items, create_shop_item, update_shop_item, get_shop_item,
-    get_all_purchases, update_purchase_status
+    get_all_purchases, update_purchase_status, delete_shop_item
 )
 
 app = Flask(__name__)
@@ -268,6 +268,24 @@ def admin_shop_purchases():
         purchases=purchases,
         current_status=status
     )
+
+@app.route('/admin/shop/item/delete/<int:item_id>', methods=['POST'])
+@login_required
+def admin_shop_item_delete(item_id):
+    """Rota para excluir um item da lojinha."""
+    item = get_shop_item(item_id)
+    
+    if not item:
+        flash('Item não encontrado.', 'danger')
+        return redirect(url_for('admin_shop'))
+    
+    result = delete_shop_item(item_id)
+    if result:
+        flash(f'Item "{item["name"]}" excluído com sucesso!', 'success')
+    else:
+        flash('Erro ao excluir o item.', 'danger')
+    
+    return redirect(url_for('admin_shop'))
 
 @app.route('/admin/shop/purchase/update/<int:purchase_id>', methods=['POST'])
 @login_required

@@ -26,20 +26,45 @@ def setup_database():
     """Create database tables if they don't exist"""
     conn = get_db_connection()
     cursor = conn.cursor()
-
-    # Tabela de usuários
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS users (
-        user_id BIGINT PRIMARY KEY,
-        username TEXT,
-        first_name TEXT,
-        last_name TEXT,
-        points INTEGER DEFAULT 0,
-        invited_by BIGINT,
-        join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        CONSTRAINT fk_invited_by FOREIGN KEY (invited_by) REFERENCES users(user_id) ON DELETE SET NULL
-    )
-    ''')
+    
+    try:
+        # Verificar se a tabela users já existe
+        cursor.execute("""
+            SELECT EXISTS (
+                SELECT FROM information_schema.tables 
+                WHERE table_name = 'users'
+            );
+        """)
+        table_exists = cursor.fetchone()[0]
+        
+        if not table_exists:
+            # Tabela de usuários
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                user_id BIGINT PRIMARY KEY,
+                username TEXT,
+                first_name TEXT,
+                last_name TEXT,
+                points INTEGER DEFAULT 0,
+                invited_by BIGINT,
+                join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                CONSTRAINT fk_invited_by FOREIGN KEY (invited_by) REFERENCES users(user_id) ON DELETE SET NULL
+            )
+            ''')
+    except Exception as e:
+        logger.error(f"Erro ao verificar ou criar tabela users: {e}")
+        # Tentativa simplificada se ocorrer erro
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            user_id BIGINT PRIMARY KEY,
+            username TEXT,
+            first_name TEXT,
+            last_name TEXT,
+            points INTEGER DEFAULT 0,
+            invited_by BIGINT,
+            join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+        ''')
 
     # Tabela de histórico de pontos
     cursor.execute('''
@@ -534,6 +559,18 @@ def update_shop_item(item_id, name, description, points_cost, is_active):
     conn.commit()
     conn.close()
     return True
+
+def delete_shop_item(item_id):
+    """Delete a shop item"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM shop_items WHERE id = %s", (item_id,))
+    
+    deleted = cursor.rowcount > 0
+    conn.commit()
+    conn.close()
+    return deleted
 
 def get_shop_items(active_only=True):
     """Get all items from the shop"""
