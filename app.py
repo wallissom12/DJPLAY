@@ -340,6 +340,28 @@ def status():
 def ping():
     """Endpoint para o UptimeRobot fazer ping e manter o bot ativo."""
     return "Pong! Bot está ativo e funcionando.", 200
+    
+@app.route('/restart_bot')
+def restart_bot_endpoint():
+    """Endpoint para reiniciar o bot remotamente (usado por serviços de monitoramento)."""
+    try:
+        import subprocess
+        import sys
+        import os
+        
+        # Executar o script de reinício em um processo separado
+        subprocess.Popen([sys.executable, 'restart_bot.py'])
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Solicitação de reinício do bot enviada. O bot será reiniciado em breve.'
+        })
+    except Exception as e:
+        logger.error(f"Erro ao reiniciar o bot: {e}")
+        return jsonify({
+            'status': 'error',
+            'message': f'Erro ao reiniciar o bot: {str(e)}'
+        }), 500
 
 @app.route('/api/leaderboard')
 def api_leaderboard():

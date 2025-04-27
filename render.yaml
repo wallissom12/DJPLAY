@@ -1,0 +1,49 @@
+services:
+  # Serviço web para o bot e a interface de administração
+  - type: web
+    name: telegram-games-bot
+    env: python
+    region: oregon  # Você pode escolher uma região mais próxima
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: gunicorn --bind 0.0.0.0:$PORT main:app
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false  # Precisa ser configurado manualmente no Render
+      - key: TELEGRAM_BOT_USERNAME
+        sync: false
+      - key: TMDB_API_KEY
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD 
+        sync: false
+      - key: FLASK_SECRET_KEY
+        generateValue: true  # Gera automaticamente uma chave segura
+      - key: DATABASE_URL
+        fromDatabase:
+          name: telegram-bot-db
+          property: connectionString
+
+  # Serviço para manter o bot do Telegram ativo (separado do Flask)
+  - type: worker
+    name: telegram-bot-worker
+    env: python
+    region: oregon
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: python telegram_bot.py
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_BOT_USERNAME
+        sync: false
+      - key: TMDB_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: telegram-bot-db
+          property: connectionString
+
+databases:
+  - name: telegram-bot-db
+    region: oregon
+    plan: free  # Plano gratuito para começar
