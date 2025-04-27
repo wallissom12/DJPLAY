@@ -183,40 +183,43 @@ async def handle_quiz_callback(update: Update, context: ContextTypes.DEFAULT_TYP
         
         # Create a new keyboard with the answers marked
         keyboard = []
-    for i, option in enumerate(options):
-        if i == answer_index and is_correct:
-            # User's correct answer
-            text = f"✅ {option}"
-        elif i == answer_index and not is_correct:
-            # User's wrong answer
-            text = f"❌ {option}"
-        elif option == correct_answer and not is_correct:
-            # Correct answer (when user was wrong)
-            text = f"✅ {option}"
-        else:
-            text = option
+        for i, option in enumerate(options):
+            if i == answer_index and is_correct:
+                # User's correct answer
+                text = f"✅ {option}"
+            elif i == answer_index and not is_correct:
+                # User's wrong answer
+                text = f"❌ {option}"
+            elif option == correct_answer and not is_correct:
+                # Correct answer (when user was wrong)
+                text = f"✅ {option}"
+            else:
+                text = option
+            
+            keyboard.append([InlineKeyboardButton(text, callback_data=f"quiz_done_{i}")])
         
-        keyboard.append([InlineKeyboardButton(text, callback_data=f"quiz_done_{i}")])
-    
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    
-    # Prepare result message
-    if is_correct:
-        result_text = (
-            f"✅ *Correto, {user.first_name}!*\n\n"
-            f"*Categoria:* {game_data['category']}\n"
-            f"*Pergunta:* {game_data['question']}\n\n"
-            f"Tempo de resposta: {response_time:.1f}s\n"
-            f"Você ganhou *{points}* pontos! 🎉"
-        )
-    else:
-        result_text = (
-            f"❌ *Incorreto, {user.first_name}*\n\n"
-            f"*Categoria:* {game_data['category']}\n"
-            f"*Pergunta:* {game_data['question']}\n\n"
-            f"Sua resposta: {user_answer}\n"
-            f"Resposta correta: {correct_answer}\n"
-            f"Melhor sorte na próxima vez! 📚"
-        )
-    
-    await query.edit_message_text(result_text, reply_markup=reply_markup, parse_mode="Markdown")
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        # Prepare result message
+        if is_correct:
+            result_text = (
+                f"✅ *Correto, {user.first_name}!*\n\n"
+                f"*Categoria:* {game_data['category']}\n"
+                f"*Pergunta:* {game_data['question']}\n\n"
+                f"Tempo de resposta: {response_time:.1f}s\n"
+                f"Você ganhou *{points}* pontos! 🎉"
+            )
+        else:
+            result_text = (
+                f"❌ *Incorreto, {user.first_name}*\n\n"
+                f"*Categoria:* {game_data['category']}\n"
+                f"*Pergunta:* {game_data['question']}\n\n"
+                f"Sua resposta: {user_answer}\n"
+                f"Resposta correta: {correct_answer}\n"
+                f"Melhor sorte na próxima vez! 📚"
+            )
+        
+        await query.edit_message_text(result_text, reply_markup=reply_markup, parse_mode="Markdown")
+    except Exception as e:
+        logging.error(f"Erro ao processar resposta do quiz: {e}")
+        await query.edit_message_text("Ocorreu um erro ao processar sua resposta.")
