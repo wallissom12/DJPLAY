@@ -732,5 +732,20 @@ def update_purchase_status(purchase_id, status):
     conn.close()
     return True
 
+def get_user_invites(user_id):
+    """Get all invites created by a user"""
+    conn = get_db_connection()
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+
+    cursor.execute('''
+    SELECT * FROM invites 
+    WHERE user_id = %s
+    ORDER BY created_at DESC
+    ''', (user_id,))
+
+    invites = cursor.fetchall()
+    conn.close()
+    return invites
+
 # Setup database on import
 setup_database()
