@@ -162,6 +162,29 @@ def setup_database():
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
     ''')
+    
+    # Tabela para rastreamento de atividade dos usuários
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS user_activity (
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL,
+        chat_id BIGINT NOT NULL,
+        activity_type VARCHAR(50) NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        CONSTRAINT fk_activity_user_id FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+    )
+    ''')
+    
+    # Índice para consultas de atividade
+    cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_user_activity_chat_user 
+    ON user_activity(chat_id, user_id)
+    ''')
+    
+    cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_user_activity_created_at 
+    ON user_activity(created_at)
+    ''')
 
     # Inserir configurações padrão se não existirem
     default_settings = [

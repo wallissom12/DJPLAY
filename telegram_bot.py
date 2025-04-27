@@ -42,6 +42,7 @@ from handlers.bingo_game import (
 from handlers.invite import generate_invite, handle_invite_join
 from handlers.leaderboard import show_leaderboard, show_invite_leaderboard
 from handlers.prize import claim_prize, handle_prize_info
+from handlers.active_members import show_active_members, record_user_activity
 from utils.scheduler import setup_game_scheduler
 
 # Enable logging
@@ -83,6 +84,7 @@ def main():
     application.add_handler(CommandHandler("placar", show_leaderboard))
     application.add_handler(CommandHandler("convites", show_invite_leaderboard))
     application.add_handler(CommandHandler("premio", claim_prize))
+    application.add_handler(CommandHandler("ativos", show_active_members))
     
     # Callback query handlers
     application.add_handler(CallbackQueryHandler(handle_movie_game_callback, pattern=r"^movie_"))
@@ -90,8 +92,9 @@ def main():
     application.add_handler(CallbackQueryHandler(admin_configure_callback, pattern=r"^config_"))
     application.add_handler(CallbackQueryHandler(handle_prize_info, pattern=r"^prize_"))
     
-    # Message handlers for game answers
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_emoji_pattern_answer))
+    # Message handlers for game answers and activity tracking
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, 
+                                          lambda update, context: record_user_activity(update, context) or handle_emoji_pattern_answer(update, context)))
     
     # Setup scheduled games
     setup_game_scheduler(application)
