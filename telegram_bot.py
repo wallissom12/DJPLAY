@@ -32,6 +32,10 @@ from handlers.emoji_pattern import (
     start_emoji_pattern_game, 
     handle_emoji_pattern_answer
 )
+from handlers.charades_game import (
+    start_charades_game,
+    handle_charades_callback
+)
 from handlers.bingo_game import (
     start_bingo_registration, 
     register_bingo_participant,
@@ -68,6 +72,7 @@ def main():
     application.add_handler(CommandHandler("filme", start_movie_game))
     application.add_handler(CommandHandler("quiz", start_quiz_game))
     application.add_handler(CommandHandler("emoji", start_emoji_pattern_game))
+    application.add_handler(CommandHandler("mimica", start_charades_game))
     
     # Admin command handlers
     application.add_handler(CommandHandler("configurar", admin_configure))
@@ -89,6 +94,7 @@ def main():
     # Callback query handlers
     application.add_handler(CallbackQueryHandler(handle_movie_game_callback, pattern=r"^movie_"))
     application.add_handler(CallbackQueryHandler(handle_quiz_callback, pattern=r"^quiz_"))
+    application.add_handler(CallbackQueryHandler(handle_charades_callback, pattern=r"^charades_"))
     application.add_handler(CallbackQueryHandler(admin_configure_callback, pattern=r"^config_"))
     application.add_handler(CallbackQueryHandler(handle_prize_info, pattern=r"^prize_"))
     

@@ -10,6 +10,7 @@ from utils.helpers import send_next_game_notification
 from handlers.movie_game import start_movie_game
 from handlers.quiz_game import start_quiz_game
 from handlers.emoji_pattern import start_emoji_pattern_game
+from handlers.charades_game import start_charades_game
 
 logger = logging.getLogger(__name__)
 
@@ -109,6 +110,38 @@ async def scheduled_emoji_pattern_game(context: ContextTypes.DEFAULT_TYPE) -> No
     # Start the emoji pattern game
     await start_emoji_pattern_game(fake_update, context)
 
+async def scheduled_charades_game(context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Start a scheduled charades game."""
+    chat_id = context.job.data.get("chat_id")
+    
+    # Create a fake update to start the game
+    class FakeUpdate:
+        def __init__(self, chat_id):
+            self.effective_chat = type('obj', (object,), {'id': chat_id})
+            self.effective_user = type('obj', (object,), {
+                'id': 0, 
+                'username': 'scheduler',
+                'first_name': 'Auto',
+                'last_name': 'Scheduler'
+            })
+            self.message = type('obj', (object,), {'reply_text': None})
+        
+        async def reply_text(self, *args, **kwargs):
+            await context.bot.send_message(chat_id=self.effective_chat.id, *args, **kwargs)
+    
+    fake_update = FakeUpdate(chat_id)
+    fake_update.message.reply_text = lambda *args, **kwargs: context.bot.send_message(chat_id=chat_id, *args, **kwargs)
+    
+    # Announce the game
+    await context.bot.send_message(
+        chat_id=chat_id,
+        text="🎭 *Hora do jogo programado: Mímica!* 🎭\n\nPrepare-se para usar suas habilidades de atuação! 🎬",
+        parse_mode="Markdown"
+    )
+    
+    # Start the charades game
+    await start_charades_game(fake_update, context)
+
 def setup_game_scheduler(application):
     """Setup scheduled games."""
     # This is just a placeholder. The actual scheduling will happen when
@@ -127,7 +160,8 @@ async def choose_random_game(context: ContextTypes.DEFAULT_TYPE) -> None:
     games = [
         (scheduled_movie_game, "filme"),
         (scheduled_quiz_game, "quiz"),
-        (scheduled_emoji_pattern_game, "emoji")
+        (scheduled_emoji_pattern_game, "emoji"),
+        (scheduled_charades_game, "mímica")
     ]
     
     # Escolher um jogo aleatoriamente
@@ -182,7 +216,8 @@ def reschedule_games(application):
         if job.name and (
             job.name.startswith("movie_") or 
             job.name.startswith("quiz_") or 
-            job.name.startswith("emoji_")
+            job.name.startswith("emoji_") or
+            job.name.startswith("charades_")
         ):
             job.schedule_removal()
     
