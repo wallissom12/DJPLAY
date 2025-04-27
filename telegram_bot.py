@@ -81,7 +81,7 @@ def main():
     # Utility command handlers
     application.add_handler(CommandHandler("convite", generate_invite))
     application.add_handler(CommandHandler("placar", show_leaderboard))
-    application.add_handler(CommandHandler("placar@", show_invite_leaderboard))
+    application.add_handler(CommandHandler("convites", show_invite_leaderboard))
     application.add_handler(CommandHandler("premio", claim_prize))
     
     # Callback query handlers
