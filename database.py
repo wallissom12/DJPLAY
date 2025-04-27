@@ -540,6 +540,42 @@ def is_admin(user_id, admin_ids=None):
     
     return user_id in admin_ids
 
+def is_group_admin(update):
+    """Verificar se o usuário é administrador do grupo"""
+    user = update.effective_user
+    chat = update.effective_chat
+    
+    # Verificar se é um grupo
+    if chat.type not in ['group', 'supergroup']:
+        return False
+    
+    # Verificar se é o criador do grupo
+    if chat.all_members_are_administrators:
+        return True
+    
+    try:
+        # Verificar se o usuário é administrador do grupo
+        member = chat.get_member(user.id)
+        return member.status in ['creator', 'administrator']
+    except Exception:
+        # Se ocorrer um erro, continuar com as verificações regulares
+        return False
+
+def is_chat_allowed(chat_id):
+    """Verificar se o chat está na lista de grupos permitidos"""
+    allowed_chats_str = get_setting("allowed_chats", "[]")
+    try:
+        allowed_chats = json.loads(allowed_chats_str)
+        # Se a lista estiver vazia, permitir todos os grupos (configuração padrão)
+        if not allowed_chats:
+            return True
+        
+        # Verificar se o chat está na lista de permitidos
+        return str(chat_id) in [str(c) for c in allowed_chats]
+    except:
+        # Em caso de erro, permitir (comportamento mais seguro)
+        return True
+
 # Funções para a lojinha
 def create_shop_item(name, description, points_cost):
     """Create a new item in the shop"""
