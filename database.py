@@ -576,6 +576,91 @@ def is_chat_allowed(chat_id):
         # Em caso de erro, permitir (comportamento mais seguro)
         return True
 
+def add_user_activity(user_id, chat_id, activity_type):
+    """Registrar atividade de um usuário em um grupo"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    # Verificar se o usuário já está registrado
+    cursor.execute("SELECT id FROM users WHERE user_id = %s", (user_id,))
+    if cursor.fetchone() is None:
+        # Não registrar atividade se o usuário não estiver no sistema
+        conn.close()
+        return False
+    
+    # Registrar nova atividade
+    cursor.execute('''
+    INSERT INTO user_activity (user_id, chat_id, activity_type, created_at)
+    VALUES (%s, %s, %s, CURRENT_TIMESTAMP)
+    ''', (user_id, chat_id, activity_type))
+    
+    conn.commit()
+    conn.close()
+    return True
+
+def get_active_members(chat_id, limit=20):
+    """Obter lista de membros mais ativos em um grupo"""
+    conn = get_db_connection()
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    
+    # Consulta para obter os membros mais ativos
+    cursor.execute('''
+    SELECT 
+        u.user_id, 
+        u.username, 
+        u.first_name, 
+        u.last_name,
+        COUNT(a.id) as activity_score
+    FROM 
+        users u
+    JOIN 
+        user_activity a ON u.user_id = a.user_id
+    WHERE 
+        a.chat_id = %s
+        AND a.created_at > CURRENT_TIMESTAMP - INTERVAL '30 days'
+    GROUP BY 
+        u.user_id, u.username, u.first_name, u.last_name
+    ORDER BY 
+        activity_score DESC
+    LIMIT %s
+    ''', (chat_id, limit))
+    
+    active_members = cursor.fetchall()
+    conn.close()
+    
+    return active_members
+
+def setup_activity_tables():
+    """Configurar tabelas para rastreamento de atividade"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    # Tabela para armazenar atividades dos usuários
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS user_activity (
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL,
+        chat_id BIGINT NOT NULL,
+        activity_type VARCHAR(50) NOT NULL,
+        created_at TIMESTAMP NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
+    )
+    ''')
+    
+    # Índice para consultas de atividade
+    cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_user_activity_chat_user 
+    ON user_activity(chat_id, user_id)
+    ''')
+    
+    cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_user_activity_created_at 
+    ON user_activity(created_at)
+    ''')
+    
+    conn.commit()
+    conn.close()
+
 # Funções para a lojinha
 def create_shop_item(name, description, points_cost):
     """Create a new item in the shop"""

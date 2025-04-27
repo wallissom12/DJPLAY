@@ -13,7 +13,7 @@ from database import (
     register_user, add_points, record_game_start, 
     get_active_game, end_game, get_setting, 
     record_used_question, get_used_questions,
-    is_admin
+    is_admin, is_group_admin, is_chat_allowed
 )
 
 # Configurações para o jogo de Bingo
@@ -42,11 +42,11 @@ async def start_bingo_registration(update: Update, context: ContextTypes.DEFAULT
         )
         return
     
-    # Verificar se o usuário é admin
+    # Verificar se o usuário é admin do bot ou admin do grupo
     admin_ids = json.loads(get_setting("admin_ids", "[]"))
-    if not is_admin(user.id, admin_ids):
+    if not (is_admin(user.id, admin_ids) or is_group_admin(update)):
         await update.message.reply_text(
-            "⚠️ Apenas administradores podem iniciar um jogo de Bingo!"
+            "⚠️ Apenas administradores do grupo ou do bot podem iniciar um jogo de Bingo!"
         )
         return
     
@@ -572,11 +572,11 @@ async def force_end_bingo(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     chat_id = update.effective_chat.id
     user = update.effective_user
     
-    # Verificar se o usuário é admin
+    # Verificar se o usuário é admin do bot ou admin do grupo
     admin_ids = json.loads(get_setting("admin_ids", "[]"))
-    if not is_admin(user.id, admin_ids):
+    if not (is_admin(user.id, admin_ids) or is_group_admin(update)):
         await update.message.reply_text(
-            "⚠️ Apenas administradores podem encerrar um jogo de Bingo!"
+            "⚠️ Apenas administradores do grupo ou do bot podem encerrar um jogo de Bingo!"
         )
         return
     
