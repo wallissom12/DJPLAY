@@ -1,0 +1,302 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Monitor do Bot Telegram | DJPAY{% endblock %}
+
+{% block extrahead %}
+<style>
+    .bot-status-container {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .status-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .status-indicator {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+    .status-active {
+        background-color: #28a745;
+    }
+    .status-inactive {
+        background-color: #dc3545;
+    }
+    .action-buttons {
+        margin-top: 20px;
+    }
+    .action-buttons button {
+        margin-right: 10px;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+    .btn-warning {
+        background-color: #ffc107;
+        color: black;
+        border: none;
+    }
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+    }
+    .log-container {
+        max-height: 300px;
+        overflow-y: auto;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        margin-top: 20px;
+    }
+    .log-entry {
+        margin: 0;
+        padding: 2px 5px;
+    }
+    .log-entry:nth-child(odd) {
+        background-color: #e8e8e8;
+    }
+    .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(0,0,0,0.2);
+        border-radius: 50%;
+        border-top-color: #007bff;
+        animation: spin 1s ease-in-out infinite;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bot-status-container">
+    <h1>Monitor do Bot Telegram</h1>
+    
+    <div class="status-card">
+        <h2>
+            Status do Bot
+            <span class="status-indicator status-active" id="status-indicator"></span>
+            <span id="loading" class="loading" style="display: none;"></span>
+        </h2>
+        
+        <div id="status-details">
+            <p><strong>Status:</strong> <span id="status-message">Carregando...</span></p>
+            <p><strong>Último ping:</strong> <span id="last-ping">-</span></p>
+            <p><strong>Total de pings:</strong> <span id="ping-count">0</span></p>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn-primary" id="btn-ping">Enviar Ping</button>
+            <button class="btn-warning" id="btn-restart">Reiniciar Bot</button>
+            <button class="btn-primary" id="btn-refresh">Atualizar Status</button>
+        </div>
+    </div>
+    
+    <div class="status-card">
+        <h2>Configurações</h2>
+        
+        <div>
+            <p><strong>URL do Bot:</strong> <code id="bot-url">{{ bot_url }}</code></p>
+            <p><strong>Intervalo de Ping Automático:</strong> 5 minutos</p>
+        </div>
+    </div>
+    
+    <div class="status-card">
+        <h2>Logs (últimas atividades)</h2>
+        
+        <div class="log-container" id="log-container">
+            <p class="log-entry">Carregando logs...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusMessage = document.getElementById('status-message');
+        const lastPing = document.getElementById('last-ping');
+        const pingCount = document.getElementById('ping-count');
+        const botUrl = document.getElementById('bot-url');
+        const logContainer = document.getElementById('log-container');
+        const loading = document.getElementById('loading');
+        
+        // Botões de ação
+        const btnPing = document.getElementById('btn-ping');
+        const btnRestart = document.getElementById('btn-restart');
+        const btnRefresh = document.getElementById('btn-refresh');
+        
+        // Token secreto para autenticação
+        const secretToken = "token_secreto_djpay_bot";
+        
+        // URLs dos endpoints
+        const activateUrl = "{% url 'activate_bot' %}";
+        const restartUrl = "{% url 'restart_bot' %}";
+        const statusUrl = "{% url 'bot_status' %}";
+        
+        // Função para atualizar o status
+        function updateStatus() {
+            loading.style.display = 'inline-block';
+            
+            fetch(statusUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'sucesso') {
+                        const botStatus = data.bot_status;
+                        
+                        // Atualizar indicador de status
+                        if (botStatus.is_active) {
+                            statusIndicator.className = 'status-indicator status-active';
+                        } else {
+                            statusIndicator.className = 'status-indicator status-inactive';
+                        }
+                        
+                        // Atualizar detalhes do status
+                        statusMessage.textContent = botStatus.status_message;
+                        lastPing.textContent = botStatus.last_ping || '-';
+                        pingCount.textContent = botStatus.ping_count;
+                        
+                        // Adicionar ao log
+                        addLogEntry(`[${new Date().toLocaleTimeString()}] Status atualizado: ${botStatus.status_message}`);
+                    } else {
+                        statusMessage.textContent = 'Erro ao obter status';
+                        addLogEntry(`[${new Date().toLocaleTimeString()}] Erro ao obter status: ${data.mensagem}`);
+                    }
+                })
+                .catch(error => {
+                    statusMessage.textContent = `Erro: ${error.message}`;
+                    addLogEntry(`[${new Date().toLocaleTimeString()}] Erro: ${error.message}`);
+                })
+                .finally(() => {
+                    loading.style.display = 'none';
+                });
+        }
+        
+        // Função para enviar ping
+        function sendPing() {
+            loading.style.display = 'inline-block';
+            btnPing.disabled = true;
+            
+            const formData = new FormData();
+            formData.append('token', secretToken);
+            
+            fetch(activateUrl, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'sucesso') {
+                        addLogEntry(`[${new Date().toLocaleTimeString()}] Ping enviado com sucesso`);
+                        updateStatus();
+                    } else {
+                        addLogEntry(`[${new Date().toLocaleTimeString()}] Erro ao enviar ping: ${data.mensagem}`);
+                        alert(`Erro ao enviar ping: ${data.mensagem}`);
+                    }
+                })
+                .catch(error => {
+                    addLogEntry(`[${new Date().toLocaleTimeString()}] Erro: ${error.message}`);
+                    alert(`Erro: ${error.message}`);
+                })
+                .finally(() => {
+                    loading.style.display = 'none';
+                    btnPing.disabled = false;
+                });
+        }
+        
+        // Função para reiniciar o bot
+        function restartBot() {
+            if (!confirm('Tem certeza que deseja reiniciar o bot? Este processo pode levar vários minutos.')) {
+                return;
+            }
+            
+            loading.style.display = 'inline-block';
+            btnRestart.disabled = true;
+            
+            const formData = new FormData();
+            formData.append('token', secretToken);
+            
+            fetch(restartUrl, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'sucesso') {
+                        addLogEntry(`[${new Date().toLocaleTimeString()}] Processo de reinicialização iniciado`);
+                        alert('Processo de reinicialização iniciado. Este processo pode levar vários minutos.');
+                        
+                        // Agendar verificações de status periódicas após a reinicialização
+                        let checksCount = 0;
+                        const statusCheck = setInterval(() => {
+                            checksCount++;
+                            updateStatus();
+                            
+                            // Parar de verificar após 10 tentativas (aproximadamente 5 minutos)
+                            if (checksCount >= 10) {
+                                clearInterval(statusCheck);
+                            }
+                        }, 30000); // Verificar a cada 30 segundos
+                    } else {
+                        addLogEntry(`[${new Date().toLocaleTimeString()}] Erro ao iniciar reinicialização: ${data.mensagem}`);
+                        alert(`Erro ao iniciar reinicialização: ${data.mensagem}`);
+                    }
+                })
+                .catch(error => {
+                    addLogEntry(`[${new Date().toLocaleTimeString()}] Erro: ${error.message}`);
+                    alert(`Erro: ${error.message}`);
+                })
+                .finally(() => {
+                    loading.style.display = 'none';
+                    btnRestart.disabled = false;
+                });
+        }
+        
+        // Função para adicionar entrada no log
+        function addLogEntry(message) {
+            const logEntry = document.createElement('p');
+            logEntry.className = 'log-entry';
+            logEntry.textContent = message;
+            
+            logContainer.insertBefore(logEntry, logContainer.firstChild);
+            
+            // Limitar o número de entradas de log
+            while (logContainer.children.length > 50) {
+                logContainer.removeChild(logContainer.lastChild);
+            }
+        }
+        
+        // Registrar manipuladores de eventos
+        btnPing.addEventListener('click', sendPing);
+        btnRestart.addEventListener('click', restartBot);
+        btnRefresh.addEventListener('click', updateStatus);
+        
+        // Inicializar a página
+        botUrl.textContent = "{{ bot_url }}";
+        updateStatus();
+        addLogEntry(`[${new Date().toLocaleTimeString()}] Página de monitoramento carregada`);
+        
+        // Atualizar status automaticamente a cada minuto
+        setInterval(updateStatus, 60000);
+    });
+</script>
+{% endblock %}
