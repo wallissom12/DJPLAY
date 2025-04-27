@@ -6,6 +6,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 import time
 import uuid
+import json
 import logging
 from datetime import datetime, timedelta
 
@@ -526,6 +527,18 @@ def get_all_settings():
         result[setting["setting_key"]] = setting["setting_value"]
 
     return result
+
+def is_admin(user_id, admin_ids=None):
+    """Verificar se um usuário é administrador do bot"""
+    if admin_ids is None:
+        # Obter lista de administradores do banco de dados
+        admin_ids_str = get_setting("admin_ids", "[]")
+        try:
+            admin_ids = json.loads(admin_ids_str)
+        except:
+            admin_ids = []
+    
+    return user_id in admin_ids
 
 # Funções para a lojinha
 def create_shop_item(name, description, points_cost):

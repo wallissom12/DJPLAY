@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 # Bot token
-TOKEN = os.getenv("TELEGRAM_TOKEN", "")
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 
 # Database settings
 DB_PATH = "bot_database.sqlite"

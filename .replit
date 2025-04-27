@@ -9,7 +9,7 @@ deploymentTarget = "autoscale"
 run = ["sh", "-c", "python main.py --bot"]
 
 [workflows]
-runButton = "Project"
+runButton = "telegram_bot"
 
 [[workflows.workflow]]
 name = "Project"

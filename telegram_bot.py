@@ -32,8 +32,15 @@ from handlers.emoji_pattern import (
     start_emoji_pattern_game, 
     handle_emoji_pattern_answer
 )
+from handlers.bingo_game import (
+    start_bingo_registration, 
+    register_bingo_participant,
+    claim_bingo,
+    show_bingo_status,
+    force_end_bingo
+)
 from handlers.invite import generate_invite, handle_invite_join
-from handlers.leaderboard import show_leaderboard
+from handlers.leaderboard import show_leaderboard, show_invite_leaderboard
 from handlers.prize import claim_prize, handle_prize_info
 from utils.scheduler import setup_game_scheduler
 
@@ -64,9 +71,17 @@ def main():
     # Admin command handlers
     application.add_handler(CommandHandler("configurar", admin_configure))
     
+    # Bingo game handlers
+    application.add_handler(CommandHandler("bingo", start_bingo_registration))
+    application.add_handler(CommandHandler("participar", register_bingo_participant))
+    application.add_handler(CommandHandler("b", claim_bingo))
+    application.add_handler(CommandHandler("status", show_bingo_status))
+    application.add_handler(CommandHandler("encerrar", force_end_bingo))
+    
     # Utility command handlers
     application.add_handler(CommandHandler("convite", generate_invite))
     application.add_handler(CommandHandler("placar", show_leaderboard))
+    application.add_handler(CommandHandler("placar@", show_invite_leaderboard))
     application.add_handler(CommandHandler("premio", claim_prize))
     
     # Callback query handlers
