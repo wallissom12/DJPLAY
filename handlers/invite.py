@@ -6,9 +6,10 @@ import string
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
+from psycopg2.extras import RealDictCursor
 from database import (
     register_user, create_invite, use_invite, 
-    get_user_invites, get_setting, get_invite_leaderboard
+    get_user_invites, get_setting, get_invite_leaderboard, get_db_connection
 )
 
 logger = logging.getLogger(__name__)
@@ -172,10 +173,21 @@ async def handle_invite_join(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 parse_mode="Markdown"
             )
             
+            # Obter informações do convidador para personalizar a mensagem
+            conn = get_db_connection()
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+            cursor.execute("SELECT username, first_name, last_name FROM users WHERE user_id = %s", (inviter_id,))
+            inviter = cursor.fetchone()
+            conn.close()
+            
+            inviter_name = inviter['username'] if inviter and inviter['username'] else \
+                          f"{inviter['first_name']} {inviter['last_name'] or ''}" if inviter else "outro usuário"
+            
             # Notificar o novo usuário
             await update.message.reply_text(
-                f"🎉 Você entrou através do link de convite de outro usuário!\n"
-                f"Bem-vindo ao Bot de Jogos! Use /help para ver os comandos disponíveis."
+                f"🎉 Você entrou através do link de convite de *{inviter_name}*!\n"
+                f"Bem-vindo ao Bot de Jogos! Use /help para ver os comandos disponíveis.",
+                parse_mode="Markdown"
             )
         except Exception as e:
             logger.error(f"Erro ao notificar sobre convite: {e}")
