@@ -305,6 +305,11 @@ def status():
     """Endpoint de status da API."""
     return jsonify({'status': 'online', 'timestamp': datetime.now().isoformat()})
 
+@app.route('/ping')
+def ping():
+    """Endpoint para o UptimeRobot fazer ping e manter o bot ativo."""
+    return "Pong! Bot está ativo e funcionando.", 200
+
 @app.route('/api/leaderboard')
 def api_leaderboard():
     """API para obter o placar."""
