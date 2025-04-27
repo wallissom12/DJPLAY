@@ -52,23 +52,36 @@ def start_telegram_bot():
     logger.info("Thread de auto-ping iniciada para manter o bot ativo")
     
     try:
-        # Verificar se o bot já está rodando
+        # Verificar se o bot já está rodando usando um arquivo de lock
         import os
-        import signal
-        import socket
+        import fcntl
         
-        # Tentar criar um socket na porta 8123 (escolhida arbitrariamente)
-        # para garantir que apenas uma instância do bot está rodando
-        lock_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # Usar um arquivo de lock em vez de um socket
+        lock_file_path = "/tmp/telegram_bot.lock"
+        
+        # Abrir (ou criar) o arquivo de lock
+        lock_file = open(lock_file_path, 'w')
+        
         try:
-            lock_socket.bind(('localhost', 8123))
+            # Tentar obter um lock exclusivo não-bloqueante
+            fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            
+            # Se chegou aqui, o lock foi obtido com sucesso
             logger.info("Bot do Telegram obteve lock exclusivo, iniciando...")
+            
+            # Gravar PID para referência
+            lock_file.write(str(os.getpid()))
+            lock_file.flush()
             
             # Iniciar o bot
             from telegram_bot import main as bot_main
             bot_main()
-        except socket.error:
+            
+        except IOError:
+            # Não foi possível obter o lock, outra instância está rodando
             logger.warning("Bot do Telegram já está rodando em outra instância. Esta instância não iniciará o bot.")
+            lock_file.close()
+            
     except Exception as e:
         logger.error(f"Erro ao iniciar o bot do Telegram: {e}")
 

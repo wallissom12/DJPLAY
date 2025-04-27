@@ -79,22 +79,21 @@ async def handle_prize_info(update: Update, context: ContextTypes.DEFAULT_TYPE) 
         # Store the prize ID in user data for the next step
         context.user_data["prize_id"] = prize_id
         
-        # Ask for PIX key
+        # Primeiro, solicitar uma foto da plataforma com QR code
         await query.edit_message_text(
-            f"🏆 *Resgate de Prêmio* 🏆\n\n"
+            f"🏆 *Resgate de Prêmio - Etapa 1 de 2* 🏆\n\n"
             f"Para continuar com o resgate do prêmio de *R$ {SETTINGS['prize_amount']}*, "
-            f"por favor, envie sua chave PIX para recebimento.\n\n"
-            f"A chave pode ser:\n"
-            f"• CPF/CNPJ\n"
-            f"• E-mail\n"
-            f"• Telefone\n"
-            f"• Chave aleatória\n\n"
-            f"Responda a esta mensagem com sua chave PIX:",
+            f"precisamos verificar sua identidade.\n\n"
+            f"Por favor, envie uma foto da sua tela mostrando:\n"
+            f"• Seu perfil na plataforma\n"
+            f"• Um QR code gerado pelo aplicativo\n\n"
+            f"Isso nos ajuda a confirmar que você é realmente o dono da conta.\n"
+            f"Envie a foto como resposta a esta mensagem:",
             parse_mode="Markdown"
         )
         
-        # Set user to waiting for PIX key state
-        context.user_data["waiting_for_pix"] = True
+        # Set user to waiting for platform photo state
+        context.user_data["waiting_for_platform_photo"] = True
         
     elif callback_data == "prize_cancel":
         await query.edit_message_text(
@@ -137,6 +136,45 @@ async def handle_prize_info(update: Update, context: ContextTypes.DEFAULT_TYPE) 
             del context.user_data["pix_key"]
         if "waiting_for_pix" in context.user_data:
             del context.user_data["waiting_for_pix"]
+
+async def handle_platform_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Handle platform photo submission for prize claims."""
+    user = update.effective_user
+    
+    # Check if user is waiting for platform photo
+    if not context.user_data.get("waiting_for_platform_photo", False):
+        return
+    
+    # Check if the message contains a photo
+    if not update.message.photo:
+        await update.message.reply_text(
+            "⚠️ Por favor, envie uma imagem da sua tela mostrando seu perfil e o QR code."
+        )
+        return
+    
+    # Get the largest photo (best quality)
+    photo = update.message.photo[-1]
+    
+    # Store the photo ID for reference
+    context.user_data["platform_photo_id"] = photo.file_id
+    
+    # Move to the next step: asking for PIX key
+    await update.message.reply_text(
+        f"✅ *Foto recebida com sucesso!* ✅\n\n"
+        f"🏆 *Resgate de Prêmio - Etapa 2 de 2* 🏆\n\n"
+        f"Agora, por favor, envie sua chave PIX para recebimento do prêmio de *R$ {SETTINGS['prize_amount']}*.\n\n"
+        f"A chave pode ser:\n"
+        f"• CPF/CNPJ\n"
+        f"• E-mail\n"
+        f"• Telefone\n"
+        f"• Chave aleatória\n\n"
+        f"Responda com sua chave PIX:",
+        parse_mode="Markdown"
+    )
+    
+    # Update user state
+    context.user_data["waiting_for_platform_photo"] = False
+    context.user_data["waiting_for_pix"] = True
 
 async def handle_pix_key(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle PIX key submission for prize claims."""

@@ -45,7 +45,7 @@ from handlers.bingo_game import (
 )
 from handlers.invite import generate_invite, handle_invite_join
 from handlers.leaderboard import show_leaderboard, show_invite_leaderboard
-from handlers.prize import claim_prize, handle_prize_info
+from handlers.prize import claim_prize, handle_prize_info, handle_platform_photo, handle_pix_key
 from handlers.active_members import show_active_members, record_user_activity
 from utils.scheduler import setup_game_scheduler
 
@@ -98,9 +98,14 @@ def main():
     application.add_handler(CallbackQueryHandler(admin_configure_callback, pattern=r"^config_"))
     application.add_handler(CallbackQueryHandler(handle_prize_info, pattern=r"^prize_"))
     
-    # Message handlers for game answers and activity tracking
+    # Message handlers for game answers, prize claims and activity tracking
+    application.add_handler(MessageHandler(filters.PHOTO, 
+                                          lambda update, context: record_user_activity(update, context) or handle_platform_photo(update, context)))
+    
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, 
-                                          lambda update, context: record_user_activity(update, context) or handle_emoji_pattern_answer(update, context)))
+                                          lambda update, context: record_user_activity(update, context) or 
+                                                                  handle_pix_key(update, context) or 
+                                                                  handle_emoji_pattern_answer(update, context)))
     
     # Setup scheduled games
     setup_game_scheduler(application)
