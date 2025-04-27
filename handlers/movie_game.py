@@ -123,7 +123,9 @@ async def start_movie_game(update: Update, context: ContextTypes.DEFAULT_TYPE) -
         "source": "tmdb" if use_tmdb else "local",
         "incorrect_users": [],  # Lista de usuários que erraram
         "correct_user": None,   # Usuário que acertou
-        "selected_answers": {}  # Mapa de opção escolhida por cada usuário
+        "selected_answers": {},  # Mapa de opção escolhida por cada usuário
+        "poster_url": movie_data.get("poster_url"),  # URL do poster do filme
+        "overview": movie_data.get("overview", "")   # Sinopse do filme
     }
 
     # Armazenar dados do jogo
@@ -186,28 +188,62 @@ async def movie_game_timeout(context: ContextTypes.DEFAULT_TYPE) -> None:
         f"⏰ *TEMPO ESGOTADO!*\n\n"
         f"Ninguém conseguiu adivinhar o filme correto.\n\n"
         f"O filme era: *{correct_title}*\n"
-        f"🎬 Emoji: {game_data['emoji']}\n\n"
-        f"Fique atento para o próximo jogo!"
+        f"🎬 Emoji: {game_data['emoji']}"
     )
-
+    
+    # Adicionar sinopse se disponível
+    if game_data.get("overview"):
+        timeout_message += f"\n\n📝 *Sinopse:*\n{game_data['overview'][:200]}..."
+    
+    timeout_message += f"\n\nFique atento para o próximo jogo!"
+    
+    # Verificar se temos um poster para o filme
+    poster_url = game_data.get("poster_url")
+    
     # Enviar mensagem de timeout
     try:
-        await context.bot.edit_message_text(
-            chat_id=chat_id,
-            message_id=message_id,
-            text=timeout_message,
-            reply_markup=None,
-            parse_mode="Markdown"
-        )
+        if poster_url:
+            # Editar a mensagem para remover os botões
+            await context.bot.edit_message_text(
+                chat_id=chat_id,
+                message_id=message_id,
+                text="⏰ Tempo esgotado! Enviando detalhes do filme...",
+                reply_markup=None
+            )
+            
+            # Enviar nova mensagem com a imagem
+            await context.bot.send_photo(
+                chat_id=chat_id,
+                photo=poster_url,
+                caption=timeout_message,
+                parse_mode="Markdown"
+            )
+        else:
+            # Se não tiver imagem, só editar a mensagem
+            await context.bot.edit_message_text(
+                chat_id=chat_id,
+                message_id=message_id,
+                text=timeout_message,
+                reply_markup=None,
+                parse_mode="Markdown"
+            )
     except Exception as e:
         logging.error(f"Erro ao enviar mensagem de timeout: {e}")
         # Tentar enviar nova mensagem se não conseguir editar
         try:
-            await context.bot.send_message(
-                chat_id=chat_id,
-                text=timeout_message,
-                parse_mode="Markdown"
-            )
+            if poster_url:
+                await context.bot.send_photo(
+                    chat_id=chat_id,
+                    photo=poster_url,
+                    caption=timeout_message,
+                    parse_mode="Markdown"
+                )
+            else:
+                await context.bot.send_message(
+                    chat_id=chat_id,
+                    text=timeout_message,
+                    parse_mode="Markdown"
+                )
         except Exception as e2:
             logging.error(f"Erro ao enviar nova mensagem de timeout: {e2}")
 
@@ -289,8 +325,31 @@ async def handle_movie_game_callback(update: Update, context: ContextTypes.DEFAU
                 f"Tempo de resposta: {response_time:.1f}s\n"
                 f"Você ganhou *{points}* pontos! 🎉"
             )
-
-            await query.edit_message_text(result_text, parse_mode="Markdown")
+            
+            # Adicionar sinopse se disponível
+            if game_data.get("overview"):
+                result_text += f"\n\n📝 *Sinopse:*\n{game_data['overview'][:200]}..."
+            
+            # Enviar a mensagem com ou sem a imagem do filme
+            poster_url = game_data.get("poster_url")
+            
+            if poster_url:
+                # Editar a mensagem para remover os botões
+                await query.edit_message_text(
+                    "🎮 Resposta correta! Enviando detalhes do filme...",
+                    reply_markup=None
+                )
+                
+                # Enviar nova mensagem com a imagem
+                await context.bot.send_photo(
+                    chat_id=chat_id,
+                    photo=poster_url,
+                    caption=result_text,
+                    parse_mode="Markdown"
+                )
+            else:
+                # Se não tiver imagem, só editar a mensagem
+                await query.edit_message_text(result_text, parse_mode="Markdown")
         except Exception as e:
             logging.error(f"Erro ao processar resposta correta: {e}")
             await query.edit_message_text(f"⚠️ Ocorreu um erro ao processar sua resposta. Por favor, tente novamente.")

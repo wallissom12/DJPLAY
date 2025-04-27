@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import random
 from datetime import datetime, timedelta
 from telegram.ext import ContextTypes
 from config import SETTINGS
@@ -116,71 +117,61 @@ def setup_game_scheduler(application):
     
     # We can initialize default chat IDs here in the future if needed
 
+import random
+
+async def choose_random_game(context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Escolhe e inicia um jogo aleatório."""
+    chat_id = context.job.data.get("chat_id")
+    
+    # Lista de funções de jogo disponíveis
+    games = [
+        (scheduled_movie_game, "filme"),
+        (scheduled_quiz_game, "quiz"),
+        (scheduled_emoji_pattern_game, "emoji")
+    ]
+    
+    # Escolher um jogo aleatoriamente
+    game_function, game_type = random.choice(games)
+    
+    # Anunciar o próximo jogo
+    await context.bot.send_message(
+        chat_id=chat_id,
+        text=f"🎮 *Hora do jogo aleatório!* 🎮\n\nPreparando um jogo de {game_type} para vocês...",
+        parse_mode="Markdown"
+    )
+    
+    # Executar o jogo escolhido
+    await game_function(context)
+
 def schedule_games_for_chat(application, chat_id):
-    """Schedule regular games for a specific chat."""
+    """Schedule regular games for a specific chat using a randomized approach."""
     job_queue = application.job_queue
     
     # Game frequency in minutes
     frequency = SETTINGS["game_frequency_minutes"]
     
-    # Add jobs for each game type
-    # Note: We'll rotate games so they don't all happen at the same time
-    
-    # Movie game every frequency
+    # Agendar o jogo aleatório para executar a cada 'frequency' minutos
     job_queue.run_repeating(
-        scheduled_movie_game,
-        interval=timedelta(minutes=frequency * 3),  # Each game type every 3 * frequency
-        first=datetime.now() + timedelta(minutes=frequency),
+        choose_random_game,
+        interval=timedelta(minutes=frequency),
+        first=datetime.now() + timedelta(minutes=3),  # Começar em 3 minutos
         data={"chat_id": chat_id},
-        name=f"movie_game_{chat_id}"
+        name=f"random_game_{chat_id}"
     )
     
-    # Quiz game every frequency (offset by frequency/3)
-    job_queue.run_repeating(
-        scheduled_quiz_game,
-        interval=timedelta(minutes=frequency * 3),
-        first=datetime.now() + timedelta(minutes=frequency + (frequency//3)),
-        data={"chat_id": chat_id},
-        name=f"quiz_game_{chat_id}"
-    )
-    
-    # Emoji pattern game every frequency (offset by 2*frequency/3)
-    job_queue.run_repeating(
-        scheduled_emoji_pattern_game,
-        interval=timedelta(minutes=frequency * 3),
-        first=datetime.now() + timedelta(minutes=frequency + (2*frequency//3)),
-        data={"chat_id": chat_id},
-        name=f"emoji_game_{chat_id}"
-    )
-    
-    # Schedule notifications before each game
+    # Schedule notifications before each game (opcional, pode ser removido se preferir surpresa total)
     notification_minutes = SETTINGS["notification_minutes_before"]
     
-    # Notification for movie game
-    job_queue.run_repeating(
-        lambda ctx: send_next_game_notification(ctx, chat_id, notification_minutes, "movie"),
-        interval=timedelta(minutes=frequency * 3),
-        first=datetime.now() + timedelta(minutes=frequency - notification_minutes),
-        name=f"movie_notification_{chat_id}"
-    )
+    # Notification for random game (optional)
+    if notification_minutes > 0:
+        job_queue.run_repeating(
+            lambda ctx: send_next_game_notification(ctx, chat_id, notification_minutes, "aleatório"),
+            interval=timedelta(minutes=frequency),
+            first=datetime.now() + timedelta(minutes=3 - notification_minutes),
+            name=f"game_notification_{chat_id}"
+        )
     
-    # Notification for quiz game
-    job_queue.run_repeating(
-        lambda ctx: send_next_game_notification(ctx, chat_id, notification_minutes, "quiz"),
-        interval=timedelta(minutes=frequency * 3),
-        first=datetime.now() + timedelta(minutes=(frequency + (frequency//3)) - notification_minutes),
-        name=f"quiz_notification_{chat_id}"
-    )
-    
-    # Notification for emoji pattern game
-    job_queue.run_repeating(
-        lambda ctx: send_next_game_notification(ctx, chat_id, notification_minutes, "emoji_pattern"),
-        interval=timedelta(minutes=frequency * 3),
-        first=datetime.now() + timedelta(minutes=(frequency + (2*frequency//3)) - notification_minutes),
-        name=f"emoji_notification_{chat_id}"
-    )
-    
-    logger.info(f"Scheduled games set up for chat {chat_id}")
+    logger.info(f"Agendamento de jogos aleatórios configurado para o chat {chat_id}")
 
 def reschedule_games(application):
     """Reschedule all games based on new settings."""

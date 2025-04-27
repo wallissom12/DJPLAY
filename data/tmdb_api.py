@@ -283,8 +283,8 @@ def generate_emoji_for_movie(movie: Dict) -> str:
 
 def get_random_tmdb_movie() -> Optional[Dict]:
     """Obtém um filme aleatório do TMDb e adiciona representação em emoji."""
-    # Tentar obter filmes da API
-    page = random.randint(1, 5)  # Aleatoriamente escolher entre as primeiras 5 páginas
+    # Tentar obter filmes da API - limitando para as primeiras 3 páginas para ter filmes mais populares
+    page = random.randint(1, 3)  # Aleatoriamente escolher entre as primeiras 3 páginas
     movies = get_popular_movies(page)
     
     if not movies:
@@ -299,8 +299,12 @@ def get_random_tmdb_movie() -> Optional[Dict]:
         logger.warning("Nenhum filme encontrado no TMDb ou cache")
         return None
     
-    # Escolher um filme aleatoriamente
-    movie = random.choice(movies)
+    # Limitar a filmes realmente populares (top 60%)
+    movies_sorted = sorted(movies, key=lambda x: x.get('popularity', 0), reverse=True)
+    top_movies = movies_sorted[:int(len(movies_sorted) * 0.6)]
+    
+    # Escolher um filme aleatoriamente entre os mais populares
+    movie = random.choice(top_movies if top_movies else movies)
     
     # Obter detalhes completos se possível
     movie_details = get_movie_details(movie["id"])
@@ -310,10 +314,19 @@ def get_random_tmdb_movie() -> Optional[Dict]:
     # Gerar emojis para o filme
     emoji = generate_emoji_for_movie(movie)
     
+    # Construir URL da imagem/poster do filme
+    poster_path = movie.get("poster_path")
+    poster_url = None
+    if poster_path:
+        poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
+    
     return {
         "id": movie["id"],
         "title": movie["title"],
-        "emoji": emoji
+        "emoji": emoji,
+        "poster_url": poster_url,
+        "overview": movie.get("overview", ""),
+        "popularity": movie.get("popularity", 0)
     }
 
 def get_movie_options_tmdb(correct_movie_id: int, num_options: int = 4) -> List[str]:
