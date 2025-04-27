@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import logging
 from telegram import Update
 from telegram.ext import ContextTypes
-from database import register_user
+from database import register_user, is_admin
+
+# Configurar logging
+logger = logging.getLogger(__name__)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a welcome message when the command /start is issued."""
@@ -17,11 +21,41 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         user.last_name
     )
     
-    # Check if this is an invite link activation
+    # Check if this is a photo view request for prize claims
     if context.args and len(context.args) > 0:
-        # This might be an invite code - handle in the invite handler
-        from handlers.invite import handle_invite_join
-        await handle_invite_join(update, context)
+        arg = context.args[0]
+        if arg.startswith("view_photo_"):
+            photo_id = arg.replace("view_photo_", "")
+            
+            # Verificar se o usuário é administrador
+            if is_admin(user.id):
+                try:
+                    # Enviar a foto para o administrador
+                    await context.bot.send_photo(
+                        chat_id=user.id,
+                        photo=photo_id,
+                        caption="📸 Foto da plataforma enviada pelo usuário para resgate de prêmio."
+                    )
+                    await update.message.reply_text(
+                        "✅ Foto de verificação do prêmio exibida acima."
+                    )
+                    return
+                except Exception as e:
+                    logger.error(f"Erro ao enviar a foto: {e}")
+                    await update.message.reply_text(
+                        "⚠️ Não foi possível recuperar a foto. O ID da foto pode ser inválido ou ela foi excluída."
+                    )
+                    return
+            else:
+                await update.message.reply_text(
+                    "⚠️ Apenas administradores podem visualizar fotos de verificação de prêmios."
+                )
+                return
+        # Se não for um código para visualizar foto, pode ser um convite
+        else:
+            # This might be an invite code - handle in the invite handler
+            from handlers.invite import handle_invite_join
+            await handle_invite_join(update, context)
     
     welcome_text = (
         f"👋 Olá, {user.first_name}!\n\n"
@@ -30,7 +64,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "📜 *Comandos disponíveis:*\n"
         "/filme - Jogo de adivinhar filme por emojis\n"
         "/quiz - Quiz de perguntas gerais\n"
-        "/emoji - Desafio de sequência de emojis\n"
+        "/mimica - Jogo de mímica com temas divertidos\n"
         "/placar - Ver o ranking de pontos\n"
         "/convite - Gerar link de convite\n"
         "/premio - Solicitar resgate de prêmio\n"

@@ -20,7 +20,8 @@ logger = logging.getLogger(__name__)
 from database import (
     get_leaderboard, get_invite_leaderboard, get_setting, update_setting,
     get_shop_items, create_shop_item, update_shop_item, get_shop_item,
-    get_all_purchases, update_purchase_status, delete_shop_item
+    get_all_purchases, update_purchase_status, delete_shop_item,
+    get_prize_claims, update_prize_claim_status
 )
 
 app = Flask(__name__)
@@ -299,6 +300,36 @@ def admin_update_purchase(purchase_id):
         flash('Status inválido.', 'danger')
     
     return redirect(url_for('admin_shop_purchases'))
+
+@app.route('/admin/prize-claims', methods=['GET'])
+@login_required
+def admin_prize_claims():
+    """Página para gerenciar resgates de prêmios."""
+    status = request.args.get('status')
+    claims = get_prize_claims(status)
+    
+    bot_username = os.environ.get("TELEGRAM_BOT_USERNAME", "seu_bot")
+    
+    return render_template(
+        'admin/prize_claims.html', 
+        title='Resgates de Prêmios',
+        claims=claims,
+        status=status,
+        bot_username=bot_username
+    )
+
+@app.route('/admin/prize-claims/<int:claim_id>/update', methods=['POST'])
+@login_required
+def admin_update_prize_claim(claim_id):
+    """Rota para atualizar o status de um resgate de prêmio."""
+    status = request.form.get('status')
+    if status in ['pending', 'processing', 'completed', 'cancelled']:
+        update_prize_claim_status(claim_id, status)
+        flash('Status do resgate de prêmio atualizado com sucesso!', 'success')
+    else:
+        flash('Status inválido.', 'danger')
+    
+    return redirect(url_for('admin_prize_claims'))
 
 @app.route('/api/status')
 def status():

@@ -190,10 +190,10 @@
                 </div>
                 
                 <div class="row g-4">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="dashboard-card card">
                             <div class="card-header">
-                                <h5 class="card-title mb-0">Compras Recentes</h5>
+                                <h5 class="card-title mb-0">Compras da Lojinha</h5>
                             </div>
                             <div class="card-body">
                                 <div class="list-group">
@@ -228,7 +228,45 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="dashboard-card card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Resgates de Prêmios</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="/admin/prize-claims?status=pending" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <i class="bi bi-clock text-warning me-2"></i>
+                                            Resgates Pendentes
+                                        </span>
+                                        <span class="badge bg-warning rounded-pill">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </span>
+                                    </a>
+                                    <a href="/admin/prize-claims?status=processing" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <i class="bi bi-arrow-repeat text-info me-2"></i>
+                                            Resgates em Processamento
+                                        </span>
+                                        <span class="badge bg-info rounded-pill">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </span>
+                                    </a>
+                                    <a href="/admin/prize-claims?status=completed" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <i class="bi bi-check-circle text-success me-2"></i>
+                                            Resgates Concluídos
+                                        </span>
+                                        <span class="badge bg-success rounded-pill">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="dashboard-card card">
                             <div class="card-header">
                                 <h5 class="card-title mb-0">Links Úteis</h5>
