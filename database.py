@@ -118,6 +118,7 @@ def setup_database():
         amount INTEGER,
         status TEXT DEFAULT 'pending',
         pix_key TEXT,
+        platform_photo_id TEXT,
         claimed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         processed_at TIMESTAMP,
         CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
@@ -466,16 +467,73 @@ def create_prize_claim(user_id, amount):
     conn.close()
     return claim_id
 
-def update_prize_payment(prize_id, pix_key):
+def update_prize_payment(prize_id, pix_key, platform_photo_id=None):
     """Update prize payment information"""
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute('''
-    UPDATE prize_claims 
-    SET pix_key = %s, status = 'processing' 
-    WHERE id = %s
-    ''', (pix_key, prize_id))
+    if platform_photo_id:
+        cursor.execute('''
+        UPDATE prize_claims 
+        SET pix_key = %s, platform_photo_id = %s, status = 'processing' 
+        WHERE id = %s
+        ''', (pix_key, platform_photo_id, prize_id))
+    else:
+        cursor.execute('''
+        UPDATE prize_claims 
+        SET pix_key = %s, status = 'processing' 
+        WHERE id = %s
+        ''', (pix_key, prize_id))
+
+    conn.commit()
+    conn.close()
+    return True
+
+def get_prize_claims(status=None, limit=50):
+    """Get all prize claims for admin view"""
+    conn = get_db_connection()
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+
+    if status:
+        cursor.execute('''
+        SELECT p.*, u.username, u.first_name, u.last_name 
+        FROM prize_claims p
+        JOIN users u ON p.user_id = u.user_id
+        WHERE p.status = %s
+        ORDER BY p.claimed_at DESC
+        LIMIT %s
+        ''', (status, limit))
+    else:
+        cursor.execute('''
+        SELECT p.*, u.username, u.first_name, u.last_name 
+        FROM prize_claims p
+        JOIN users u ON p.user_id = u.user_id
+        ORDER BY p.claimed_at DESC
+        LIMIT %s
+        ''', (limit,))
+
+    claims = cursor.fetchall()
+    conn.close()
+
+    return claims
+
+def update_prize_claim_status(claim_id, status):
+    """Update the status of a prize claim"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    if status == 'completed':
+        cursor.execute('''
+        UPDATE prize_claims 
+        SET status = %s, processed_at = CURRENT_TIMESTAMP 
+        WHERE id = %s
+        ''', (status, claim_id))
+    else:
+        cursor.execute('''
+        UPDATE prize_claims 
+        SET status = %s 
+        WHERE id = %s
+        ''', (status, claim_id))
 
     conn.commit()
     conn.close()

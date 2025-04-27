@@ -104,15 +104,16 @@ async def handle_prize_info(update: Update, context: ContextTypes.DEFAULT_TYPE) 
         # Complete the prize claim process
         prize_id = context.user_data.get("prize_id")
         pix_key = context.user_data.get("pix_key")
+        platform_photo_id = context.user_data.get("platform_photo_id")
         
-        if not prize_id or not pix_key:
+        if not prize_id or not pix_key or not platform_photo_id:
             await query.edit_message_text(
                 "❌ Erro ao processar sua solicitação de prêmio. Por favor, tente novamente mais tarde."
             )
             return
         
         # Update prize with payment info
-        success = update_prize_payment(prize_id, pix_key)
+        success = update_prize_payment(prize_id, pix_key, platform_photo_id)
         
         if success:
             await query.edit_message_text(
@@ -134,8 +135,12 @@ async def handle_prize_info(update: Update, context: ContextTypes.DEFAULT_TYPE) 
             del context.user_data["prize_id"]
         if "pix_key" in context.user_data:
             del context.user_data["pix_key"]
+        if "platform_photo_id" in context.user_data:
+            del context.user_data["platform_photo_id"]
         if "waiting_for_pix" in context.user_data:
             del context.user_data["waiting_for_pix"]
+        if "waiting_for_platform_photo" in context.user_data:
+            del context.user_data["waiting_for_platform_photo"]
 
 async def handle_platform_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle platform photo submission for prize claims."""
